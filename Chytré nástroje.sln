@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chytré nástroje", "Chytré nástroje\Chytré nástroje.csproj", "{C1F262BE-6E19-491C-9452-CB318DDE288F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2B331AD4-D97C-470F-9291-3DF5C5CC36B2} = {2B331AD4-D97C-470F-9291-3DF5C5CC36B2}
+		{D712FD7C-B33D-4FFF-86ED-419B0AB989BD} = {D712FD7C-B33D-4FFF-86ED-419B0AB989BD}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mazani_profilu", "Hlavni program\Mazani_profilu.csproj", "{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kopirovani_souboru", "Kopirovani_souboru\Kopirovani_souboru.csproj", "{2B331AD4-D97C-470F-9291-3DF5C5CC36B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1F262BE-6E19-491C-9452-CB318DDE288F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F262BE-6E19-491C-9452-CB318DDE288F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F262BE-6E19-491C-9452-CB318DDE288F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F262BE-6E19-491C-9452-CB318DDE288F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B331AD4-D97C-470F-9291-3DF5C5CC36B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B331AD4-D97C-470F-9291-3DF5C5CC36B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B331AD4-D97C-470F-9291-3DF5C5CC36B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B331AD4-D97C-470F-9291-3DF5C5CC36B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
