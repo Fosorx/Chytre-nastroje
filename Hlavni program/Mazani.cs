@@ -1,6 +1,10 @@
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Management;
 
 namespace Hlavni_program
 {
@@ -10,136 +14,117 @@ namespace Hlavni_program
         {
             InitializeComponent();
         }
+
         List<string> sidKeys = new List<string>();
 
-        int taskComplete = 0;
-
-
-        public void ShowProfilePath()
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            string baseKeyPath = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList";
+            label2.Visible = false;
+            await LoadProfilesAsync();
+        }
 
-            using (RegistryKey profileListKey = Registry.LocalMachine.OpenSubKey(baseKeyPath))
+        private async Task LoadProfilesAsync()
+        {
+            await Task.Run(() =>
             {
+                string baseKeyPath = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList";
+
+                using RegistryKey profileListKey = Registry.LocalMachine.OpenSubKey(baseKeyPath);
                 if (profileListKey != null)
                 {
                     foreach (string subKeyName in profileListKey.GetSubKeyNames())
                     {
-                        using (RegistryKey profileKey = profileListKey.OpenSubKey(subKeyName))
+                        using RegistryKey profileKey = profileListKey.OpenSubKey(subKeyName);
+                        if (profileKey != null)
                         {
-                            if (profileKey != null)
+                            string profilePath = profileKey.GetValue("ProfileImagePath") as string;
+                            if (!string.IsNullOrEmpty(profilePath))
                             {
-                                string profilePath = profileKey.GetValue("ProfileImagePath") as string;
+                                sidKeys.Add(subKeyName);
 
-                                if (!string.IsNullOrEmpty(profilePath))
-                                {
-                                    sidKeys.Add(subKeyName);
-                                    ProfilesInRegisterList.Items.Add(profilePath);
-                                }
+                                // Invoke because this modifies UI
+                                Invoke(() => ProfilesInRegisterList.Items.Add(profilePath));
                             }
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Klíè ProfileList nebyl nalezen.");
+                    Invoke(() => MessageBox.Show("Klíè ProfileList nebyl nalezen."));
                 }
-            }
+            });
         }
 
-        private void DeleteProfiles(string sidToDelete, string folderPath)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            string profileListKeyPath = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList";
-
-            using (RegistryKey baseKey = Registry.LocalMachine.OpenSubKey(profileListKeyPath, writable: true))
+            if (ProfilesInRegisterList.CheckedItems.Count == 0)
             {
-                if (baseKey != null)
-                {
-                    try
-                    {
-                        baseKey.DeleteSubKeyTree(sidToDelete);
-                    }
-                    catch (System.Exception ex)
-                    {
-                        MessageBox.Show($"Chyba pøi mazání: {ex.Message}");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Nebyl nalezen profil.");
-
-                }
+                MessageBox.Show("Vyberte prosím alespoò jeden profil.");
+                return;
             }
 
-            if (Directory.Exists(folderPath))
+            int total = ProfilesInRegisterList.CheckedItems.Count;
+            progressBar.Minimum = 0;
+            progressBar.Maximum = 100;
+            progressBar.Value = 0;
+
+            IProgress<int> progress = new Progress<int>(percent =>
+            {
+                progressBar.Value = percent;
+            });
+
+            int count = 0;
+
+            foreach (var item in ProfilesInRegisterList.CheckedItems)
+            {
+                int index = ProfilesInRegisterList.Items.IndexOf(item);
+                await DeleteProfileAsync(sidKeys[index]);
+
+                count++;
+                int percent = (int)((double)count / total * 100);
+                progress.Report(percent);
+            }
+
+            label2.Visible = true;
+        }
+
+        private async Task DeleteProfileAsync(string sidToDelete)
+        {
+            await Task.Run(() =>
             {
                 try
                 {
-                    if (string.IsNullOrWhiteSpace(folderPath) || !Directory.Exists(folderPath))
-                    {
-                        MessageBox.Show("Neplatná cesta");
-                        return;
-                    }
+                    string psCommand = $"Get-CimInstance -ClassName Win32_UserProfile | Where-Object {{$_.SID -eq '{sidToDelete}'}} | Remove-CimInstance";
 
-                    var command = $"/C rmdir /S /Q \"{folderPath}\"";
-
-                    var startInfo = new ProcessStartInfo("cmd.exe")
+                    var psi = new ProcessStartInfo()
                     {
-                        Verb = "runas",
+                        FileName = "powershell.exe",
+                        Arguments = $"-NoProfile -Command \"{psCommand}\"",
                         UseShellExecute = true,
-                        WindowStyle = ProcessWindowStyle.Normal,
-                        Arguments = command
+                        Verb = "runas",
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = false,
+                        RedirectStandardError = false,
                     };
 
-                    using var process = Process.Start(startInfo);
-                    process?.WaitForExit();
-                }
-                catch (Win32Exception ex) when (ex.NativeErrorCode == 1223)
-                {
-                    MessageBox.Show("Operace byla ukonèena uživatelem");
+                    using (var process = Process.Start(psi))
+                    {
+                        process.WaitForExit();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Chyba: {ex.Message}");
+                    MessageBox.Show($"Chyba pøi mazání profilu pomocí PowerShell: {ex.Message}");
                 }
-
-            }
-            else
-            {
-                MessageBox.Show("Složka nebyla nalezena!");
-            }
+            });
         }
 
-
-        private void ChangeTaskBar()
+        private void UpdateProgress(int current, int total)
         {
-            progressBar.Value = progressBar.Value + ((1 / ProfilesInRegisterList.CheckedItems.Count));
-        }
+            if (total == 0) return;
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            label2.Visible = false;
-            ShowProfilePath();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (ProfilesInRegisterList.CheckedItems.Count != 0)
-            {
-                foreach (var item in ProfilesInRegisterList.CheckedItems)
-                {
-                    int index = ProfilesInRegisterList.Items.IndexOf(item);
-                    DeleteProfiles(sidKeys[index], item.ToString());
-                    ChangeTaskBar();
-                }
-                progressBar.Value = 0;
-                label2.Visible = true;
-
-            }
-            else
-            {
-                MessageBox.Show("Vyberte prosím alespoò jeden profil.");
-            }
+            int percentage = (int)((double)current / total * 100);
+            progressBar.Value = Math.Min(percentage, 100);
         }
     }
 }
