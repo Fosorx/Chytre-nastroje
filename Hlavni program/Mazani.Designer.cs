@@ -71,6 +71,7 @@
             button1.TabIndex = 6;
             button1.Text = "Vymazat profily";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // ProfilesInRegisterList
             // 
@@ -80,7 +81,7 @@
             ProfilesInRegisterList.Size = new Size(472, 202);
             ProfilesInRegisterList.TabIndex = 5;
             // 
-            // Form1
+            // Mazani
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -90,7 +91,7 @@
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(ProfilesInRegisterList);
-            Name = "Form1";
+            Name = "Mazani";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);

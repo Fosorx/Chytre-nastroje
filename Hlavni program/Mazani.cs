@@ -1,4 +1,5 @@
 using Microsoft.Win32;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Hlavni_program
@@ -74,25 +75,34 @@ namespace Hlavni_program
             {
                 try
                 {
-                    string command = $"/C rmdir /S /Q \"{folderPath}\"";
-
-                    // Spuštìní pøíkazového øádku jako administrátor
-                    ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe")
+                    if (string.IsNullOrWhiteSpace(folderPath) || !Directory.Exists(folderPath))
                     {
-                        Verb = "runas",  // Spuštìní s administrátorskými právy
-                        UseShellExecute = true, // Pro použití 'runas'
-                        WindowStyle = ProcessWindowStyle.Normal, // Okno bude zobrazeno
-                        Arguments = command // Pøíkaz pro vymazání složky
+                        MessageBox.Show("Neplatná cesta");
+                        return;
+                    }
+
+                    var command = $"/C rmdir /S /Q \"{folderPath}\"";
+
+                    var startInfo = new ProcessStartInfo("cmd.exe")
+                    {
+                        Verb = "runas",
+                        UseShellExecute = true,
+                        WindowStyle = ProcessWindowStyle.Normal,
+                        Arguments = command
                     };
 
-                    // Spuštìní procesu CMD
-                    Process.Start(startInfo);
-
+                    using var process = Process.Start(startInfo);
+                    process?.WaitForExit();
                 }
-                catch (System.Exception ex)
+                catch (Win32Exception ex) when (ex.NativeErrorCode == 1223)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Operace byla ukonèena uživatelem");
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Chyba: {ex.Message}");
+                }
+
             }
             else
             {
@@ -100,7 +110,19 @@ namespace Hlavni_program
             }
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+
+        private void ChangeTaskBar()
+        {
+            progressBar.Value = progressBar.Value + ((1 / ProfilesInRegisterList.CheckedItems.Count));
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            label2.Visible = false;
+            ShowProfilePath();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             if (ProfilesInRegisterList.CheckedItems.Count != 0)
             {
@@ -118,17 +140,6 @@ namespace Hlavni_program
             {
                 MessageBox.Show("Vyberte prosím alespoò jeden profil.");
             }
-        }
-
-        private void ChangeTaskBar()
-        {
-            progressBar.Value = progressBar.Value + ((1 / ProfilesInRegisterList.CheckedItems.Count));
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            label2.Visible = false;
-            ShowProfilePath();
         }
     }
 }

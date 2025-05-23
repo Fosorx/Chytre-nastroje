@@ -57,6 +57,7 @@
             // 
             // button2
             // 
+            button2.Enabled = false;
             button2.Font = new Font("Segoe UI", 15F);
             button2.Location = new Point(201, 245);
             button2.Name = "button2";
