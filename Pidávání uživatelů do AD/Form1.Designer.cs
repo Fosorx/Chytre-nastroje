@@ -31,6 +31,7 @@
             button1 = new Button();
             label1 = new Label();
             label2 = new Label();
+            AddUsersButton = new Button();
             SuspendLayout();
             // 
             // button1
@@ -55,17 +56,29 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(289, 105);
+            label2.Location = new Point(270, 105);
             label2.Name = "label2";
             label2.Size = new Size(93, 15);
             label2.TabIndex = 2;
             label2.Text = "Vybraný soubor:";
+            // 
+            // AddUsersButton
+            // 
+            AddUsersButton.Enabled = false;
+            AddUsersButton.Location = new Point(339, 153);
+            AddUsersButton.Name = "AddUsersButton";
+            AddUsersButton.Size = new Size(75, 23);
+            AddUsersButton.TabIndex = 3;
+            AddUsersButton.Text = "Přidat uživatele";
+            AddUsersButton.UseVisualStyleBackColor = true;
+            AddUsersButton.Click += AddUsersButton_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(AddUsersButton);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button1);
@@ -80,5 +93,6 @@
         private Button button1;
         private Label label1;
         private Label label2;
+        private Button AddUsersButton;
     }
 }
