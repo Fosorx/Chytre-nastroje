@@ -1,5 +1,5 @@
+using ClosedXML.Excel;
 using Microsoft.VisualBasic.ApplicationServices;
-using OfficeOpenXml;
 using Pidávání_uživatelů_do_AD;
 using System.Management.Automation;
 
@@ -42,31 +42,25 @@ namespace Přidávání_uživatelů_do_AD
         {
             var users = new List<Users>();
 
-            ExcelPackage.License.SetNonCommercialPersonal("Fosorx");
 
-            using (ExcelPackage package = new ExcelPackage(filePath))
+            using (var workbook = new XLWorkbook(filePath))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                var worksheet = workbook.Worksheet(1); 
+                var rows = worksheet.RangeUsed().RowsUsed().Skip(2); 
 
-                int row = 3;
-
-                while (worksheet.Cells[row, 1].Value != null)
+                foreach (var row in rows)
                 {
-                    string _name = worksheet.Cells[row, 4].Value.ToString();
-                    string _surname = worksheet.Cells[row, 5].Value.ToString();
-                    string _userName = worksheet.Cells[row, 6].Value.ToString();
+                    if (!row.Cell(1).IsEmpty())
+                    {
+                        string _name = row.Cell(4).GetString();
+                        string _surname = row.Cell(5).GetString();
+                        string _userName = row.Cell(6).GetString();
 
-                    users.Add(new Users { name = _name, surname = _surname, userName = _userName });
-                    row++;
+                        users.Add(new Users { name = _name, surname = _surname, userName = _userName });
+                    }
                 }
-                if (row != 3)
-                {
-                    MessageBox.Show("Data úspěšně načtená");
-                    return users;
-                }
-                return null;
             }
-
+            return users;
         }
 
 
@@ -75,7 +69,9 @@ namespace Přidávání_uživatelů_do_AD
             using PowerShell ps = PowerShell.Create();
 
             // Načtení modulu ActiveDirectory jednou před cyklem
-            ps.AddScript("Import-Module ActiveDirectory").Invoke();
+            ps.AddScript("Set-ExecutionPolicy Bypass -Scope Process -Force; Import-Module ActiveDirectory").Invoke();
+
+
             ps.Commands.Clear();
 
             foreach (var user in users_list)
@@ -128,12 +124,14 @@ namespace Přidávání_uživatelů_do_AD
                     foreach (var error in ps.Streams.Error)
                     {
                         Console.WriteLine(error.ToString());
+                        MessageBox.Show($"Chyba při vytváření uživatele {user.userName}: {error}");
                     }
                     ps.Streams.Error.Clear();
                 }
                 else
                 {
                     Console.WriteLine($"User {user.userName} created successfully.");
+                    MessageBox.Show($"Uživatel {user.userName} úspěšně vytvořen.");
                 }
 
                 ps.Commands.Clear();
