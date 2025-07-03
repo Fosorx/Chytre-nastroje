@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Hlavni program\Mazani_profilu.csproj" />
     <ProjectReference Include="..\Kopirovani_souboru\Kopirovani_souboru.csproj" />
+	<ProjectReference Include="..\Pidávání uživatelů do AD\Přidávání uživatelů do AD.csproj" />
   </ItemGroup>
 
 </Project>

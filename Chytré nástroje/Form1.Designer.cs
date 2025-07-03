@@ -32,6 +32,7 @@
             label1 = new Label();
             button2 = new Button();
             button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -77,11 +78,23 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // button4
+            // 
+            button4.Font = new Font("Segoe UI", 15F);
+            button4.Location = new Point(201, 355);
+            button4.Name = "button4";
+            button4.Size = new Size(432, 49);
+            button4.TabIndex = 4;
+            button4.Text = "Přidávání uživatelů do AD";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(860, 450);
+            ClientSize = new Size(860, 495);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(label1);
@@ -99,5 +112,6 @@
         private Label label1;
         private Button button2;
         private Button button3;
+        private Button button4;
     }
 }

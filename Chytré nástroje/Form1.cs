@@ -2,6 +2,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using Hlavni_program;
 using Kopirovani_souboru;
+using Přidávání_uživatelů_do_AD;
 
 namespace Chytré_nástroje
 {
@@ -26,6 +27,12 @@ namespace Chytré_nástroje
         {
             Kopirovani kopirovani = new Kopirovani();
             kopirovani.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Přidávání přidávání = new Přidávání();
+            přidávání.Show();
         }
     }
 }
