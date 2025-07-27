@@ -79,8 +79,8 @@ namespace Přidávání_uživatelů_do_AD
 
                 foreach (var user in users_list)
                 {
-                    string profilePath = $@"\\BL3C-WSE-Mach\Profiles$\{YearOfGraduationTextBox.Text}\{user.userName}";
-                    string homeDirectory = $@"\\BL3C-WSE-Mach\Home_folders$\{YearOfGraduationTextBox.Text}\{user.userName}";
+                    string profilePath = $@"\\BLEKVM1\Profiles\{YearOfGraduationTextBox.Text}\{user.userName}";
+                    string homeDirectory = $@"\\BLEKVM1\DriveK\Student\{YearOfGraduationTextBox.Text}\{user.userName}";
 
                     string script = @"
                     param($username, $firstname, $lastname, $domain, $profilePath, $homeDirectory, $yearOfGraduation, $class)
@@ -90,7 +90,7 @@ namespace Přidávání_uživatelů_do_AD
                                -Surname $lastname `
                                -SamAccountName $username `
                                -UserPrincipalName ""$username@$domain"" `
-                               -Path ""OU=$class,OU=$yearOfGraduation,OU=Studenti,DC=localmach,DC=lab"" `
+                               -Path ""OU=$class,OU=$yearOfGraduation,OU=Studenti,DC=blek,DC=cz"" `
                                -AccountPassword (ConvertTo-SecureString ""asdfASDF1234!"" -AsPlainText -Force) `
                                -Enabled $true `
                                -ProfilePath $profilePath `
@@ -115,7 +115,7 @@ namespace Přidávání_uživatelů_do_AD
                       .AddParameter("username", user.userName)
                       .AddParameter("firstname", user.name)
                       .AddParameter("lastname", user.surname)
-                      .AddParameter("domain", "localmach.lab")
+                      .AddParameter("domain", "BLEK-CZ")
                       .AddParameter("profilePath", profilePath)
                       .AddParameter("homeDirectory", homeDirectory)
                       .AddParameter("yearOfGraduation", YearOfGraduationTextBox.Text)

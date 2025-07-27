@@ -44,7 +44,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(403, 106);
+            button1.Location = new Point(539, 108);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -65,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(484, 110);
+            label2.Location = new Point(620, 112);
             label2.Name = "label2";
             label2.Size = new Size(93, 15);
             label2.TabIndex = 2;
@@ -96,7 +96,7 @@
             // 
             // YearOfGraduationTextBox
             // 
-            YearOfGraduationTextBox.Location = new Point(403, 145);
+            YearOfGraduationTextBox.Location = new Point(539, 147);
             YearOfGraduationTextBox.Name = "YearOfGraduationTextBox";
             YearOfGraduationTextBox.Size = new Size(75, 23);
             YearOfGraduationTextBox.TabIndex = 5;
@@ -123,7 +123,7 @@
             // 
             // LetterClassTextBox
             // 
-            LetterClassTextBox.Location = new Point(403, 192);
+            LetterClassTextBox.Location = new Point(539, 194);
             LetterClassTextBox.Name = "LetterClassTextBox";
             LetterClassTextBox.Size = new Size(75, 23);
             LetterClassTextBox.TabIndex = 8;
@@ -154,7 +154,7 @@
             LogOpenButton.UseVisualStyleBackColor = true;
             LogOpenButton.Click += button2_Click;
             // 
-            // Form1
+            // Přidávání
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -171,7 +171,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button1);
-            Name = "Form1";
+            Name = "Přidávání";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
