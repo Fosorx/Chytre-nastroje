@@ -1,6 +1,6 @@
 using Microsoft.Win32;
 using System.Diagnostics;
-using Hlavni_program;
+using Mazani_profilu;
 using Kopirovani_souboru;
 using Přidávání_uživatelů_do_AD;
 

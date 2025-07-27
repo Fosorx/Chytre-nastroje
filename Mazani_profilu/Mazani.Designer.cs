@@ -1,4 +1,4 @@
-﻿namespace Hlavni_program
+﻿namespace Mazani_profilu
 {
     partial class Mazani
     {

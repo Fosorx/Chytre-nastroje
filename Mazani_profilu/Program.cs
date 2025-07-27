@@ -1,5 +1,5 @@
 using System.Windows.Forms;
-namespace Hlavni_program
+namespace Mazani_profilu
 {
     internal static class Program
     {

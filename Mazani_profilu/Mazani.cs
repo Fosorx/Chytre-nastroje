@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 
-namespace Hlavni_program
+namespace Mazani_profilu
 {
     public partial class Mazani : Form
     {

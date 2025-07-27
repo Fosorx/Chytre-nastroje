@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chytré nástroje", "Chytr�
 		{D712FD7C-B33D-4FFF-86ED-419B0AB989BD} = {D712FD7C-B33D-4FFF-86ED-419B0AB989BD}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mazani_profilu", "Hlavni program\Mazani_profilu.csproj", "{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mazani_profilu", "Mazani_profilu\Mazani_profilu.csproj", "{D712FD7C-B33D-4FFF-86ED-419B0AB989BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kopirovani_souboru", "Kopirovani_souboru\Kopirovani_souboru.csproj", "{2B331AD4-D97C-470F-9291-3DF5C5CC36B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Přidávání uživatelů do AD", "Pidávání uživatelů do AD\Přidávání uživatelů do AD.csproj", "{8D531AF9-29D5-4A73-807B-8B16FAE06DF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Přidávání uživatelů do AD", "Přidávání uživatelů do AD\Přidávání uživatelů do AD.csproj", "{8D531AF9-29D5-4A73-807B-8B16FAE06DF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
