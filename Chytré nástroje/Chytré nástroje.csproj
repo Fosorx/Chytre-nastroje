@@ -10,9 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hlavni program\Mazani_profilu.csproj" />
     <ProjectReference Include="..\Kopirovani_souboru\Kopirovani_souboru.csproj" />
-	<ProjectReference Include="..\Pidávání uživatelů do AD\Přidávání uživatelů do AD.csproj" />
+    <ProjectReference Include="..\Mazani_profilu\Mazani_profilu.csproj" />
+    <ProjectReference Include="..\Pridavani_uzivatelu_do_AD\Přidávání uživatelů do AD.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,8 +19,8 @@ namespace Chytré_nástroje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Mazani mazani = new Mazani();
-            mazani.Show();
+            var mazaciOkno = new Mazani();
+            mazaciOkno.ShowDialog(); // nebo Show()
         }
 
         private void button3_Click(object sender, EventArgs e)
