@@ -1,5 +1,4 @@
-using System.Windows.Forms;
-namespace Hlavni_program
+namespace Přidávání_uživatelů_do_AD
 {
     internal static class Program
     {
@@ -12,7 +11,7 @@ namespace Hlavni_program
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Mazani());
+            Application.Run(new Přidávání());
         }
     }
 }

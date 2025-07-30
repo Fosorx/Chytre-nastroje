@@ -1,7 +1,8 @@
 using Microsoft.Win32;
 using System.Diagnostics;
-using Hlavni_program;
+using Mazani_profilu;
 using Kopirovani_souboru;
+using Přidávání_uživatelů_do_AD;
 
 namespace Chytré_nástroje
 {
@@ -18,14 +19,20 @@ namespace Chytré_nástroje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Mazani mazani = new Mazani();
-            mazani.Show();
+            var mazaciOkno = new Mazani();
+            mazaciOkno.ShowDialog(); // nebo Show()
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Kopirovani kopirovani = new Kopirovani();
             kopirovani.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Přidávání přidávání = new Přidávání();
+            přidávání.Show();
         }
     }
 }

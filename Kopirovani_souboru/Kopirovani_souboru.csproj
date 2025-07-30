@@ -6,6 +6,13 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+	<RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>
+
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mazani_profilu\Mazani_profilu.csproj" />
+    <ProjectReference Include="..\Pridavani_uzivatelu_do_AD\Přidávání uživatelů do AD.csproj" />
+  </ItemGroup>
 
 </Project>
