@@ -20,29 +20,28 @@ namespace Kopirovani_souboru
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
-            openFileDialog1.FilterIndex = 2;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            using (var dialog = new FolderBrowserDialog())
             {
-                //Get the path of specified file
-                filePath = openFileDialog1.FileName;
+                dialog.Description = "Vyberte složku";
+                dialog.UseDescriptionForTitle = true; // od .NET 6+
 
-                //Read the contents of the file into a stream
-                var fileStream = openFileDialog1.OpenFile();
-
-                using (StreamReader reader = new StreamReader(fileStream))
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    fileContent = reader.ReadToEnd();
+                    chooseFolder = dialog.SelectedPath;
                 }
-                string readText = File.ReadAllText(filePath);
-                namesList = readText.Split(";").ToList();
+            }
+            if (Directory.Exists(chooseFolder))
+            {
+                string[] subfolders = Directory.GetDirectories(chooseFolder);
+                namesList = subfolders.Select(Path.GetFileName).ToList();
+                button2.Enabled = true;
+                button3.Enabled = true;
+                button5.Enabled = true;
                 ShowNames();
+            }
+            else
+            {
+                MessageBox.Show("Zvolená složka neexistuje.");
             }
         }
 
@@ -50,9 +49,8 @@ namespace Kopirovani_souboru
         {
             foreach (var name in namesList)
             {
-                namesView.Items.Add(name);
+                namesCheckBox.Items.Add(name);
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -70,7 +68,7 @@ namespace Kopirovani_souboru
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
-                    label4.Text = filePath;
+                    selectedFile.Text = filePath;
                 }
             }
         }
@@ -85,7 +83,7 @@ namespace Kopirovani_souboru
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     chooseFolder = dialog.SelectedPath;
-                    label5.Text = chooseFolder;
+                    selectedFolder.Text = chooseFolder;
                 }
                 isFolder = true;
             }
@@ -101,9 +99,10 @@ namespace Kopirovani_souboru
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     chooseTargetFolder = dialog.SelectedPath;
-                    label7.Text = chooseTargetFolder;
+                    selectedTargetFolder.Text = chooseTargetFolder;
                 }
             }
+            button4.Enabled = true;
         }
 
         private async void button4_Click(object sender, EventArgs e)
@@ -164,6 +163,14 @@ namespace Kopirovani_souboru
         private void ChangeTaskBar()
         {
             progressBar.Value = progressBar.Value + ((1 / namesList.Count()));
+        }
+
+        private void Kopirovani_Load(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
         }
     }
 }

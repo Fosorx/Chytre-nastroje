@@ -1,6 +1,6 @@
 ﻿namespace Chytré_nástroje
 {
-    partial class Form1
+    partial class Hlavni
     {
         /// <summary>
         ///  Required designer variable.

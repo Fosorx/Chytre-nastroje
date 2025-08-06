@@ -6,9 +6,9 @@ using Přidávání_uživatelů_do_AD;
 
 namespace Chytré_nástroje
 {
-    public partial class Form1 : Form
+    public partial class Hlavni : Form
     {
-        public Form1()
+        public Hlavni()
         {
             InitializeComponent();
         }
@@ -31,6 +31,7 @@ namespace Chytré_nástroje
 
         private void button4_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("UPOZORNĚNÍ: Tato funkce funguje pouze na Windows servers. Děkujeme za pochopení.");
             Přidávání přidávání = new Přidávání();
             přidávání.Show();
         }
