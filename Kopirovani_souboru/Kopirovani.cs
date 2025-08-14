@@ -172,5 +172,29 @@ namespace Kopirovani_souboru
             button4.Enabled = false;
             button5.Enabled = false;
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChooseAllButton_Click(object sender, EventArgs e)
+        {
+
+            if (namesCheckBox.CheckedItems.Count < namesCheckBox.Items.Count)
+            {
+                for (int i = 0; i < namesCheckBox.Items.Count; i++)
+                {
+                    namesCheckBox.SetItemChecked(i, true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < namesCheckBox.Items.Count; i++)
+                {
+                    namesCheckBox.SetItemChecked(i, false);
+                }
+            }
+        }
     }
 }

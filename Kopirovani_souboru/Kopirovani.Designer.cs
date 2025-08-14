@@ -44,6 +44,7 @@
             selectedFile = new Label();
             selectedFolder = new Label();
             selectedTargetFolder = new Label();
+            ChooseAllButton = new Button();
             SuspendLayout();
             // 
             // button1
@@ -113,11 +114,12 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(50, 388);
+            label3.Location = new Point(50, 375);
             label3.Name = "label3";
             label3.Size = new Size(177, 15);
             label3.TabIndex = 7;
             label3.Text = "seznam žáků / seznam počítačů ";
+            label3.Click += label3_Click;
             // 
             // button4
             // 
@@ -188,12 +190,23 @@
             selectedTargetFolder.Size = new Size(0, 15);
             selectedTargetFolder.TabIndex = 18;
             // 
+            // ChooseAllButton
+            // 
+            ChooseAllButton.Location = new Point(50, 393);
+            ChooseAllButton.Name = "ChooseAllButton";
+            ChooseAllButton.Size = new Size(177, 23);
+            ChooseAllButton.TabIndex = 19;
+            ChooseAllButton.Text = "Označit / odznačit všechny";
+            ChooseAllButton.UseVisualStyleBackColor = true;
+            ChooseAllButton.Click += ChooseAllButton_Click;
+            // 
             // Kopirovani
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(823, 450);
+            Controls.Add(ChooseAllButton);
             Controls.Add(selectedTargetFolder);
             Controls.Add(selectedFolder);
             Controls.Add(selectedFile);
@@ -212,7 +225,7 @@
             HelpButton = true;
             Name = "Kopirovani";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Kopírování souborů/složek";
+            Text = "Kopírování souborů / složek";
             Load += Kopirovani_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -236,5 +249,6 @@
         private Label selectedFile;
         private Label selectedFolder;
         private Label selectedTargetFolder;
+        private Button ChooseAllButton;
     }
 }
