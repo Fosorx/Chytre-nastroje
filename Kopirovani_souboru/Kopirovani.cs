@@ -18,7 +18,7 @@ namespace Kopirovani_souboru
         string chooseFolder = string.Empty;
         string filePath = string.Empty;
 
-        private void button1_Click(object sender, EventArgs e)
+        private void chooseFolderNamesButton_Click(object sender, EventArgs e)
         {
             using (var dialog = new FolderBrowserDialog())
             {
@@ -34,9 +34,9 @@ namespace Kopirovani_souboru
             {
                 string[] subfolders = Directory.GetDirectories(chooseFolder);
                 namesList = subfolders.Select(Path.GetFileName).ToList();
-                button2.Enabled = true;
-                button3.Enabled = true;
-                button5.Enabled = true;
+                chooseFileButton.Enabled = true;
+                chooseFolderButton.Enabled = true;
+                chooseTargetFolderButton.Enabled = true;
                 ShowNames();
             }
             else
@@ -53,7 +53,7 @@ namespace Kopirovani_souboru
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void chooseFileButton_Click(object sender, EventArgs e)
         {
             var fileContent = string.Empty;
             filePath = string.Empty;
@@ -73,7 +73,7 @@ namespace Kopirovani_souboru
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void chooseFolderButton_Click(object sender, EventArgs e)
         {
             using (var dialog = new FolderBrowserDialog())
             {
@@ -89,7 +89,7 @@ namespace Kopirovani_souboru
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void chooseTargetFolderButton_Click(object sender, EventArgs e)
         {
             using (var dialog = new FolderBrowserDialog())
             {
@@ -102,10 +102,10 @@ namespace Kopirovani_souboru
                     selectedTargetFolder.Text = chooseTargetFolder;
                 }
             }
-            button4.Enabled = true;
+            CopyButton.Enabled = true;
         }
 
-        private async void button4_Click(object sender, EventArgs e)
+        private async void CopyButton_Click(object sender, EventArgs e)
         {
             progressBar.Value = 0;
             progressBar.Maximum = namesList.Count;
@@ -167,15 +167,10 @@ namespace Kopirovani_souboru
 
         private void Kopirovani_Load(object sender, EventArgs e)
         {
-            button2.Enabled = false;
-            button3.Enabled = false;
-            button4.Enabled = false;
-            button5.Enabled = false;
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
+            chooseFileButton.Enabled = false;
+            chooseFolderButton.Enabled = false;
+            CopyButton.Enabled = false;
+            chooseTargetFolderButton.Enabled = false;
         }
 
         private void ChooseAllButton_Click(object sender, EventArgs e)

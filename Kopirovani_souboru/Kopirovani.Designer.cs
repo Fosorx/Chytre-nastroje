@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            chooseFolderNamesButton = new Button();
             openFileDialog1 = new OpenFileDialog();
             nadpis = new Label();
             label1 = new Label();
-            button2 = new Button();
+            chooseFileButton = new Button();
             label2 = new Label();
-            button3 = new Button();
+            chooseFolderButton = new Button();
             label3 = new Label();
-            button4 = new Button();
+            CopyButton = new Button();
             label6 = new Label();
-            button5 = new Button();
+            chooseTargetFolderButton = new Button();
             progressBar = new ProgressBar();
             namesCheckBox = new CheckedListBox();
             selectedFile = new Label();
@@ -47,15 +47,15 @@
             ChooseAllButton = new Button();
             SuspendLayout();
             // 
-            // button1
+            // chooseFolderNamesButton
             // 
-            button1.Location = new Point(395, 63);
-            button1.Name = "button1";
-            button1.Size = new Size(343, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Vybrat";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            chooseFolderNamesButton.Location = new Point(395, 63);
+            chooseFolderNamesButton.Name = "chooseFolderNamesButton";
+            chooseFolderNamesButton.Size = new Size(343, 23);
+            chooseFolderNamesButton.TabIndex = 0;
+            chooseFolderNamesButton.Text = "Vybrat";
+            chooseFolderNamesButton.UseVisualStyleBackColor = true;
+            chooseFolderNamesButton.Click += chooseFolderNamesButton_Click;
             // 
             // openFileDialog1
             // 
@@ -81,15 +81,15 @@
             label1.TabIndex = 3;
             label1.Text = "Vybrat soubor ke kopírování:";
             // 
-            // button2
+            // chooseFileButton
             // 
-            button2.Location = new Point(635, 119);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 4;
-            button2.Text = "Vybrat";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            chooseFileButton.Location = new Point(635, 119);
+            chooseFileButton.Name = "chooseFileButton";
+            chooseFileButton.Size = new Size(75, 23);
+            chooseFileButton.TabIndex = 4;
+            chooseFileButton.Text = "Vybrat";
+            chooseFileButton.UseVisualStyleBackColor = true;
+            chooseFileButton.Click += chooseFileButton_Click;
             // 
             // label2
             // 
@@ -101,15 +101,15 @@
             label2.TabIndex = 5;
             label2.Text = "Vybrat složku ke kopírování:";
             // 
-            // button3
+            // chooseFolderButton
             // 
-            button3.Location = new Point(635, 154);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 6;
-            button3.Text = "Vybrat";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            chooseFolderButton.Location = new Point(635, 154);
+            chooseFolderButton.Name = "chooseFolderButton";
+            chooseFolderButton.Size = new Size(75, 23);
+            chooseFolderButton.TabIndex = 6;
+            chooseFolderButton.Text = "Vybrat";
+            chooseFolderButton.UseVisualStyleBackColor = true;
+            chooseFolderButton.Click += chooseFolderButton_Click;
             // 
             // label3
             // 
@@ -119,17 +119,16 @@
             label3.Size = new Size(177, 15);
             label3.TabIndex = 7;
             label3.Text = "seznam žáků / seznam počítačů ";
-            label3.Click += label3_Click;
             // 
-            // button4
+            // CopyButton
             // 
-            button4.Location = new Point(409, 243);
-            button4.Name = "button4";
-            button4.Size = new Size(301, 23);
-            button4.TabIndex = 10;
-            button4.Text = "Kopírovat";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            CopyButton.Location = new Point(409, 243);
+            CopyButton.Name = "CopyButton";
+            CopyButton.Size = new Size(301, 23);
+            CopyButton.TabIndex = 10;
+            CopyButton.Text = "Kopírovat";
+            CopyButton.UseVisualStyleBackColor = true;
+            CopyButton.Click += CopyButton_Click;
             // 
             // label6
             // 
@@ -141,15 +140,15 @@
             label6.TabIndex = 11;
             label6.Text = "Cílová složka:";
             // 
-            // button5
+            // chooseTargetFolderButton
             // 
-            button5.Location = new Point(635, 197);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 12;
-            button5.Text = "Vybrat";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            chooseTargetFolderButton.Location = new Point(635, 197);
+            chooseTargetFolderButton.Name = "chooseTargetFolderButton";
+            chooseTargetFolderButton.Size = new Size(75, 23);
+            chooseTargetFolderButton.TabIndex = 12;
+            chooseTargetFolderButton.Text = "Vybrat";
+            chooseTargetFolderButton.UseVisualStyleBackColor = true;
+            chooseTargetFolderButton.Click += chooseTargetFolderButton_Click;
             // 
             // progressBar
             // 
@@ -212,16 +211,16 @@
             Controls.Add(selectedFile);
             Controls.Add(namesCheckBox);
             Controls.Add(progressBar);
-            Controls.Add(button5);
+            Controls.Add(chooseTargetFolderButton);
             Controls.Add(label6);
-            Controls.Add(button4);
+            Controls.Add(CopyButton);
             Controls.Add(label3);
-            Controls.Add(button3);
+            Controls.Add(chooseFolderButton);
             Controls.Add(label2);
-            Controls.Add(button2);
+            Controls.Add(chooseFileButton);
             Controls.Add(label1);
             Controls.Add(nadpis);
-            Controls.Add(button1);
+            Controls.Add(chooseFolderNamesButton);
             HelpButton = true;
             Name = "Kopirovani";
             StartPosition = FormStartPosition.CenterScreen;
@@ -233,17 +232,17 @@
 
         #endregion
 
-        private Button button1;
+        private Button chooseFolderNamesButton;
         private OpenFileDialog openFileDialog1;
         private Label nadpis;
         private Label label1;
-        private Button button2;
+        private Button chooseFileButton;
         private Label label2;
-        private Button button3;
+        private Button chooseFolderButton;
         private Label label3;
-        private Button button4;
+        private Button CopyButton;
         private Label label6;
-        private Button button5;
+        private Button chooseTargetFolderButton;
         private ProgressBar progressBar;
         private CheckedListBox namesCheckBox;
         private Label selectedFile;
