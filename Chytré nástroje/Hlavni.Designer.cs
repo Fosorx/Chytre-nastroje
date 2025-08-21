@@ -33,6 +33,7 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -89,17 +90,29 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // Form1
+            // button5
+            // 
+            button5.Font = new Font("Segoe UI", 15F);
+            button5.Location = new Point(201, 410);
+            button5.Name = "button5";
+            button5.Size = new Size(432, 49);
+            button5.TabIndex = 5;
+            button5.Text = "Hromadné spuštění programu";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // Hlavni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(860, 495);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button1);
-            Name = "Form1";
+            Name = "Hlavni";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -113,5 +126,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private Button button5;
     }
 }

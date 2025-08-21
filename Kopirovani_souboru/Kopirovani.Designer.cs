@@ -45,6 +45,7 @@
             selectedFolder = new Label();
             selectedTargetFolder = new Label();
             ChooseAllButton = new Button();
+            checkComputer = new CheckBox();
             SuspendLayout();
             // 
             // chooseFolderNamesButton
@@ -152,7 +153,7 @@
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(409, 320);
+            progressBar.Location = new Point(409, 286);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(301, 23);
             progressBar.TabIndex = 14;
@@ -199,12 +200,24 @@
             ChooseAllButton.UseVisualStyleBackColor = true;
             ChooseAllButton.Click += ChooseAllButton_Click;
             // 
+            // checkComputer
+            // 
+            checkComputer.AutoSize = true;
+            checkComputer.Location = new Point(233, 397);
+            checkComputer.Name = "checkComputer";
+            checkComputer.Size = new Size(71, 19);
+            checkComputer.TabIndex = 20;
+            checkComputer.Text = "Počítače";
+            checkComputer.UseVisualStyleBackColor = true;
+            checkComputer.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // Kopirovani
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(823, 450);
+            Controls.Add(checkComputer);
             Controls.Add(ChooseAllButton);
             Controls.Add(selectedTargetFolder);
             Controls.Add(selectedFolder);
@@ -249,5 +262,6 @@
         private Label selectedFolder;
         private Label selectedTargetFolder;
         private Button ChooseAllButton;
+        private CheckBox checkComputer;
     }
 }

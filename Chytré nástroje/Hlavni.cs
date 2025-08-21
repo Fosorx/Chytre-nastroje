@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Mazani_profilu;
 using Kopirovani_souboru;
 using Přidávání_uživatelů_do_AD;
+using Hromadne_spusteni_programu;
 
 namespace Chytré_nástroje
 {
@@ -34,6 +35,12 @@ namespace Chytré_nástroje
             MessageBox.Show("UPOZORNĚNÍ: Tato funkce funguje pouze na Windows servers. Děkujeme za pochopení.");
             Přidávání přidávání = new Přidávání();
             přidávání.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Spusteni hromadne = new Spusteni();
+            hromadne.Show();
         }
     }
 }

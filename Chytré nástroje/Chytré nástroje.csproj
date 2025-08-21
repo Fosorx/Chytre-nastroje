@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hromadne_spusteni_programu\Hromadne_spusteni_programu.csproj" />
     <ProjectReference Include="..\Kopirovani_souboru\Kopirovani_souboru.csproj" />
     <ProjectReference Include="..\Mazani_profilu\Mazani_profilu.csproj" />
     <ProjectReference Include="..\Pridavani_uzivatelu_do_AD\Přidávání uživatelů do AD.csproj" />
