@@ -1,9 +1,8 @@
 using ClosedXML.Excel;
 using Microsoft.VisualBasic.ApplicationServices;
-using Pidávání_uživatelů_do_AD;
 using System.Management.Automation;
 
-namespace Přidávání_uživatelů_do_AD
+namespace Chytré_nástroje
 {
     public partial class Přidávání : Form
     {

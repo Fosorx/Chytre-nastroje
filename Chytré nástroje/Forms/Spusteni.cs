@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Hromadne_spusteni_programu
+namespace Chytré_nástroje
 {
     public partial class Spusteni : Form
     {

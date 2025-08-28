@@ -4,9 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Management;
 
-namespace Mazani_profilu
+namespace Chytré_nástroje
 {
     public partial class Mazani : Form
     {

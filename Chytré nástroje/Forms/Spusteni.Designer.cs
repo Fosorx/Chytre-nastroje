@@ -1,4 +1,4 @@
-﻿namespace Hromadne_spusteni_programu
+﻿namespace Chytré_nástroje
 {
     partial class Spusteni
     {

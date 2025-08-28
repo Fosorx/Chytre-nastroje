@@ -1,4 +1,4 @@
-﻿namespace Přidávání_uživatelů_do_AD
+﻿namespace Chytré_nástroje
 {
     partial class Přidávání
     {

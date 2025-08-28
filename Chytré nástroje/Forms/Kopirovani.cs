@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Kopirovani_souboru
+namespace Chytré_nástroje
 {
     public partial class Kopirovani : Form
     {

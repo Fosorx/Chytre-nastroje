@@ -1,4 +1,4 @@
-﻿namespace Kopirovani_souboru
+﻿namespace Chytré_nástroje
 {
     partial class Kopirovani
     {

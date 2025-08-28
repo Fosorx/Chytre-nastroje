@@ -1,9 +1,5 @@
 using Microsoft.Win32;
 using System.Diagnostics;
-using Mazani_profilu;
-using Kopirovani_souboru;
-using Přidávání_uživatelů_do_AD;
-using Hromadne_spusteni_programu;
 
 namespace Chytré_nástroje
 {
@@ -20,8 +16,8 @@ namespace Chytré_nástroje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var mazaciOkno = new Mazani();
-            mazaciOkno.ShowDialog(); // nebo Show()
+            Mazani mazani = new Mazani();
+            mazani.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -39,8 +35,8 @@ namespace Chytré_nástroje
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Spusteni hromadne = new Spusteni();
-            hromadne.Show();
+            Spusteni spusteni = new Spusteni();
+            spusteni.Show();
         }
     }
 }

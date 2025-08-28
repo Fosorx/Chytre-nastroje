@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pidávání_uživatelů_do_AD
+namespace Chytré_nástroje
 {
     internal class Users
     {

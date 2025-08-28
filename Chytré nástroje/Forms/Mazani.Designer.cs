@@ -1,4 +1,4 @@
-﻿namespace Mazani_profilu
+﻿namespace Chytré_nástroje
 {
     partial class Mazani
     {
