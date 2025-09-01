@@ -1,4 +1,5 @@
 using Microsoft.Win32;
+using Chytré_nástroje.Code;
 using System.Diagnostics;
 
 namespace Chytré_nástroje
@@ -12,6 +13,7 @@ namespace Chytré_nástroje
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            AutoUpdate();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,6 +39,12 @@ namespace Chytré_nástroje
         {
             Spusteni spusteni = new Spusteni();
             spusteni.Show();
+        }
+
+        private async Task AutoUpdate()
+        {
+            var updater = new AutoUpdate();
+            MessageBox.Show(await updater.CheckForUpdateAsync());
         }
     }
 }
