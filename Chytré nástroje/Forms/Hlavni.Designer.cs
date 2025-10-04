@@ -34,7 +34,6 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
-            label2 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -102,21 +101,11 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(728, 471);
-            label2.Name = "label2";
-            label2.Size = new Size(120, 15);
-            label2.TabIndex = 6;
-            label2.Text = "Verze programu: 1.2.0";
-            // 
             // Hlavni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(860, 495);
-            Controls.Add(label2);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -124,7 +113,7 @@
             Controls.Add(label1);
             Controls.Add(button1);
             Name = "Hlavni";
-            Text = "Menu";
+            Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -138,6 +127,5 @@
         private Button button3;
         private Button button4;
         private Button button5;
-        private Label label2;
     }
 }

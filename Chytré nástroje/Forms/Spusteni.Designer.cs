@@ -140,7 +140,7 @@
             Controls.Add(chooseAllButton);
             Controls.Add(checkedComputersBox);
             Name = "Spusteni";
-            Text = "Spuštění programů na více počítačích";
+            Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
         }
