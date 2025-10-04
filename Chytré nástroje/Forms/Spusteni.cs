@@ -47,7 +47,7 @@ namespace Chytré_nástroje
                 case 5:
                     return 17;
                 default:
-                    return 0;
+                    return 1;
             }
         }
         private string ip
@@ -69,7 +69,7 @@ namespace Chytré_nástroje
                     case 5:
                         return "10.130.37.";
                     default:
-                        return string.Empty;
+                        return "192.168.1.19";
                 }
             }
         }
@@ -96,7 +96,7 @@ namespace Chytré_nástroje
                     using (TcpClient client = new TcpClient())
                     {
                         // Timeout pro pøipojení (2s)
-                        var connectTask = client.ConnectAsync(ip + $"{i}", 7468);
+                        var connectTask = client.ConnectAsync($"test;192.168.1.19", 4278);
                         if (await Task.WhenAny(connectTask, Task.Delay(2000)) != connectTask)
                         {
                             label4.Text = "Timeout – server nedostupný";
@@ -105,7 +105,7 @@ namespace Chytré_nástroje
 
                         using (NetworkStream stream = client.GetStream())
                         {
-                            string message = @$"{passwordHash(passwordTextBox.Text)};RUN {programPathTextBox.Text}";
+                            string message = @$"56b1db8133d9eb398aabd376f07bf8ab5fc584ea0b8bd6a1770200cb613ca005;RUN {programPathTextBox.Text}";
                             byte[] data = Encoding.UTF8.GetBytes(message);
                             await stream.WriteAsync(data, 0, data.Length);
 

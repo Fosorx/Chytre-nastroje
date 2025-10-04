@@ -92,7 +92,7 @@
             Controls.Add(button1);
             Controls.Add(ProfilesInRegisterList);
             Name = "Mazani";
-            Text = "Form1";
+            Text = "Mazání uživatelských profilů";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

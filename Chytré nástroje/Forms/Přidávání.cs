@@ -1,3 +1,4 @@
+using Chytré_nástroje.Code;
 using ClosedXML.Excel;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Management.Automation;
@@ -114,7 +115,7 @@ namespace Chytré_nástroje
                       .AddParameter("username", user.userName)
                       .AddParameter("firstname", user.name)
                       .AddParameter("lastname", user.surname)
-                      .AddParameter("domain", "BLEK-CZ")
+                      .AddParameter("domain", "BLEK.CZ")
                       .AddParameter("profilePath", profilePath)
                       .AddParameter("homeDirectory", homeDirectory)
                       .AddParameter("yearOfGraduation", YearOfGraduationTextBox.Text)

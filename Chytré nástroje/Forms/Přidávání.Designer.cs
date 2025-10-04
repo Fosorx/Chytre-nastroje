@@ -172,7 +172,7 @@
             Controls.Add(label1);
             Controls.Add(button1);
             Name = "Přidávání";
-            Text = "Form1";
+            Text = "Přidávání uživatelů do AD";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
