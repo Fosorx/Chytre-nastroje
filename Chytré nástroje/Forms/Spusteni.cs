@@ -96,7 +96,7 @@ namespace Chytré_nástroje
                     using (TcpClient client = new TcpClient())
                     {
                         // Timeout pro pøipojení (2s)
-                        var connectTask = client.ConnectAsync(ip + $"{i}", 7468);
+                        var connectTask = client.ConnectAsync($"192.168.1.19", 4278);
                         if (await Task.WhenAny(connectTask, Task.Delay(2000)) != connectTask)
                         {
                             label4.Text = "Timeout – server nedostupný";
@@ -105,7 +105,7 @@ namespace Chytré_nástroje
 
                         using (NetworkStream stream = client.GetStream())
                         {
-                            string message = @$"{passwordHash(passwordTextBox.Text)};RUN {programPathTextBox.Text}";
+                            string message = @$"test;RUN {programPathTextBox.Text}";
                             byte[] data = Encoding.UTF8.GetBytes(message);
                             await stream.WriteAsync(data, 0, data.Length);
 

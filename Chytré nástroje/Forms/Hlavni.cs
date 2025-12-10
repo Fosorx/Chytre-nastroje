@@ -44,7 +44,7 @@ namespace Chytré_nástroje
         private async Task AutoUpdate()
         {
             var updater = new AutoUpdate();
-            MessageBox.Show(await updater.CheckForUpdateAsync());
+            await updater.CheckForUpdateAsync();
         }
     }
 }

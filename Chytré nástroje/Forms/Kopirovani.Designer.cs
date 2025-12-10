@@ -37,8 +37,6 @@
             chooseFolderButton = new Button();
             label3 = new Label();
             CopyButton = new Button();
-            label6 = new Label();
-            chooseTargetFolderButton = new Button();
             progressBar = new ProgressBar();
             namesCheckBox = new CheckedListBox();
             selectedFile = new Label();
@@ -123,7 +121,7 @@
             // 
             // CopyButton
             // 
-            CopyButton.Location = new Point(409, 243);
+            CopyButton.Location = new Point(409, 214);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(301, 23);
             CopyButton.TabIndex = 10;
@@ -131,29 +129,9 @@
             CopyButton.UseVisualStyleBackColor = true;
             CopyButton.Click += CopyButton_Click;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(409, 196);
-            label6.Name = "label6";
-            label6.Size = new Size(103, 21);
-            label6.TabIndex = 11;
-            label6.Text = "Cílová složka:";
-            // 
-            // chooseTargetFolderButton
-            // 
-            chooseTargetFolderButton.Location = new Point(635, 197);
-            chooseTargetFolderButton.Name = "chooseTargetFolderButton";
-            chooseTargetFolderButton.Size = new Size(75, 23);
-            chooseTargetFolderButton.TabIndex = 12;
-            chooseTargetFolderButton.Text = "Vybrat";
-            chooseTargetFolderButton.UseVisualStyleBackColor = true;
-            chooseTargetFolderButton.Click += chooseTargetFolderButton_Click;
-            // 
             // progressBar
             // 
-            progressBar.Location = new Point(409, 286);
+            progressBar.Location = new Point(409, 257);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(301, 23);
             progressBar.TabIndex = 14;
@@ -224,8 +202,6 @@
             Controls.Add(selectedFile);
             Controls.Add(namesCheckBox);
             Controls.Add(progressBar);
-            Controls.Add(chooseTargetFolderButton);
-            Controls.Add(label6);
             Controls.Add(CopyButton);
             Controls.Add(label3);
             Controls.Add(chooseFolderButton);
@@ -254,8 +230,6 @@
         private Button chooseFolderButton;
         private Label label3;
         private Button CopyButton;
-        private Label label6;
-        private Button chooseTargetFolderButton;
         private ProgressBar progressBar;
         private CheckedListBox namesCheckBox;
         private Label selectedFile;

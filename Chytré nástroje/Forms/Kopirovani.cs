@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Wordprocessing;
 using System.Diagnostics;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -11,13 +12,11 @@ namespace Chytré_nástroje
             InitializeComponent();
 
         }
-
         List<string> namesList = new List<string>();
         List<string> namesCheckedList = new List<string>();
 
         bool isFolder = false;
         string chooseTargetFolder = string.Empty;
-        string chooseTargetFolderComputers = string.Empty;
         string chooseFolder = string.Empty;
         string filePath = string.Empty;
 
@@ -26,20 +25,19 @@ namespace Chytré_nástroje
             using (var dialog = new FolderBrowserDialog())
             {
                 dialog.Description = "Vyberte složku";
-                dialog.UseDescriptionForTitle = true; // od .NET 6+
+                dialog.UseDescriptionForTitle = true;
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    chooseFolder = dialog.SelectedPath;
+                    chooseTargetFolder = dialog.SelectedPath;
                 }
             }
-            if (Directory.Exists(chooseFolder))
+            if (Directory.Exists(chooseTargetFolder))
             {
-                string[] subfolders = Directory.GetDirectories(chooseFolder);
+                string[] subfolders = Directory.GetDirectories(chooseTargetFolder);
                 namesList = subfolders.Select(Path.GetFileName).ToList();
                 chooseFileButton.Enabled = true;
                 chooseFolderButton.Enabled = true;
-                chooseTargetFolderButton.Enabled = true;
                 ShowNames();
             }
             else
@@ -99,7 +97,7 @@ namespace Chytré_nástroje
             using (var dialog = new FolderBrowserDialog())
             {
                 dialog.Description = "Vyberte složku";
-                dialog.UseDescriptionForTitle = true; // od .NET 6+
+                dialog.UseDescriptionForTitle = true; 
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -114,15 +112,27 @@ namespace Chytré_nástroje
             progressBar.Value = 0;
             progressBar.Maximum = namesList.Count;
 
+            foreach (var n in namesList)
+            {
+                foreach (var check in namesCheckBox.CheckedItems)
+                {
+                    if(n == check)
+                    {
+                        namesCheckedList.Add(n);
+                    }
+                }
+            }
+
             if (isFolder)
             {
                 if (checkComputer.Checked)
                 {
                     await Task.Run(() =>
                     {
-                        foreach (var name in namesList)
+                        foreach (var name in namesCheckedList)
                         {
-                            CopyDirectory(chooseFolder, Path.Combine(name, "Install", Path.GetFileName(chooseFolder)));
+                            MessageBox.Show("Funguju");
+                            CopyDirectory(chooseFolder, Path.Combine(chooseTargetFolder, name, "Install", Path.GetFileName(chooseFolder)));
                             this.Invoke(() => ChangeTaskBar());
                         }
                     });
@@ -131,9 +141,9 @@ namespace Chytré_nástroje
                 {
                     await Task.Run(() =>
                     {
-                        foreach (var name in namesList)
+                        foreach (var name in namesCheckedList)
                         {
-                            CopyDirectory(chooseFolder, Path.Combine(name, Path.GetFileName(chooseFolder)));
+                            CopyDirectory(chooseFolder, Path.Combine(chooseTargetFolder, name, Path.GetFileName(chooseFolder)));
                             this.Invoke(() => ChangeTaskBar());
                         }
                     });
@@ -145,21 +155,11 @@ namespace Chytré_nástroje
                 {
                     await Task.Run(() =>
                     {
-                        string behindVt = string.Empty;
-                        string beforeVt = string.Empty;
-
-                        foreach (var name in namesList)
+                        foreach(var name in namesCheckedList)
                         {
-                            int index = chooseTargetFolder.IndexOf("vt-1");
-                            if (index >= 0)
-                            {
-                                behindVt = chooseTargetFolder.Substring(index + name.Length+1);
-                                beforeVt = chooseTargetFolder.Substring(0, index);
-
-                                string cilovaCesta = Path.Combine(chooseFolder, name, behindVt, Path.GetFileName(filePath));
-                                File.Copy(filePath, cilovaCesta);
-                                this.Invoke(() => ChangeTaskBar());
-                            }
+                            string cilovaCesta = Path.Combine(chooseTargetFolder, name, "Install", Path.GetFileName(filePath));
+                            File.Copy(filePath, cilovaCesta);
+                            this.Invoke(() => ChangeTaskBar());
                         }
                     });
                 }
@@ -167,7 +167,7 @@ namespace Chytré_nástroje
                 {
                     await Task.Run(() =>
                     {
-                        foreach (var name in namesList)
+                        foreach (var name in namesCheckedList)
                         {
                             string cilovaCesta = Path.Combine(chooseTargetFolder, name, Path.GetFileName(filePath));
                             File.Copy(filePath, cilovaCesta);
@@ -214,10 +214,6 @@ namespace Chytré_nástroje
             chooseFileButton.Enabled = false;
             chooseFolderButton.Enabled = false;
             CopyButton.Enabled = false;
-            chooseTargetFolderButton.Enabled = false;
-
-            label6.Visible = false;
-            chooseTargetFolderButton.Visible = false;
             selectedTargetFolder.Visible = false;
         }
 
@@ -244,14 +240,10 @@ namespace Chytré_nástroje
         {
             if (checkComputer.Checked)
             {
-                label6.Visible = true;
-                chooseTargetFolderButton.Visible = true;
                 selectedTargetFolder.Visible = true;
             }
             else
             {
-                label6.Visible = false;
-                chooseTargetFolderButton.Visible = false;
                 selectedTargetFolder.Visible = false;
             }
         }

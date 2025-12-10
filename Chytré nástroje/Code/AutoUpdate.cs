@@ -9,9 +9,9 @@ namespace Chytré_nástroje.Code
 {
     internal class AutoUpdate
     {
-        private readonly string manifestUrl = "https://chytre-nastroje.netlify.app/update.json";
+        private readonly string manifestUrl = "https://fosorx.github.io/update.json";
 
-        public async Task<string> CheckForUpdateAsync()
+        public async Task CheckForUpdateAsync()
         {
             try
             {
@@ -25,7 +25,7 @@ namespace Chytré_nástroje.Code
 
                 if (latestVersion > currentVersion)
                 {
-                    Console.WriteLine($"Nová verze {latestVersion} je dostupná, stahuji...");
+                    MessageBox.Show($"Nová verze {latestVersion} je dostupná, stahuji...");
 
                     string tempPath = Path.Combine(Path.GetTempPath(), "ChytreNastrojeUpdate");
                     Directory.CreateDirectory(tempPath);
@@ -39,20 +39,18 @@ namespace Chytré_nástroje.Code
                     {
                         await response.Content.CopyToAsync(fs);
                     }
+                    MessageBox.Show($"Soubor stažen: {fileName}");
 
-                    return $"Soubor stažen: {fileName}";
-
-                    // >>> Zde můžeš spustit updater nebo instalátor
-                    // System.Diagnostics.Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
                 }
                 else
                 {
-                    return "Používáte nejnovější verzi.";
+
+                    MessageBox.Show("Používáte nejnovější verzi.");
                 }
             }
             catch (Exception ex)
             {
-                return "Chyba při kontrole aktualizace: " + ex.Message;
+                MessageBox.Show("Chyba při kontrole aktualizace: " + ex.Message);
             }
         }
     }
