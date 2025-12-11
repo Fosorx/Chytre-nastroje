@@ -112,70 +112,56 @@ namespace Chytré_nástroje
             progressBar.Value = 0;
             progressBar.Maximum = namesList.Count;
 
-            foreach (var n in namesList)
-            {
-                foreach (var check in namesCheckBox.CheckedItems)
-                {
-                    if(n == check)
-                    {
-                        namesCheckedList.Add(n);
-                    }
-                }
-            }
+            var namesCheckedList = namesList
+            .Where(n => namesCheckBox.CheckedItems.Contains(n))
+            .ToList();
 
-            if (isFolder)
+            if (isFolder && checkComputer.Checked)
             {
-                if (checkComputer.Checked)
+                await Task.Run(() =>
                 {
-                    await Task.Run(() =>
+                    foreach (var name in namesCheckedList)
                     {
-                        foreach (var name in namesCheckedList)
-                        {
-                            MessageBox.Show("Funguju");
-                            CopyDirectory(chooseFolder, Path.Combine(chooseTargetFolder, name, "Install", Path.GetFileName(chooseFolder)));
-                            this.Invoke(() => ChangeTaskBar());
-                        }
-                    });
-                }
-                else
+                        MessageBox.Show("Funguju");
+                        CopyDirectory(chooseFolder, Path.Combine(chooseTargetFolder, name, "Install", Path.GetFileName(chooseFolder)));
+                        this.Invoke(() => ChangeTaskBar());
+                    }
+                });
+            }
+            else if (isFolder && !checkComputer.Checked)
+            {
+                await Task.Run(() =>
                 {
-                    await Task.Run(() =>
+                    foreach (var name in namesCheckedList)
                     {
-                        foreach (var name in namesCheckedList)
-                        {
-                            CopyDirectory(chooseFolder, Path.Combine(chooseTargetFolder, name, Path.GetFileName(chooseFolder)));
-                            this.Invoke(() => ChangeTaskBar());
-                        }
-                    });
-                }
+                        CopyDirectory(chooseFolder, Path.Combine(chooseTargetFolder, name, Path.GetFileName(chooseFolder)));
+                        this.Invoke(() => ChangeTaskBar());
+                    }
+                });
+            }
+            else if(!isFolder && checkComputer.Checked)
+            {
+                await Task.Run(() =>
+                {
+                    foreach (var name in namesCheckedList)
+                    {
+                        string cilovaCesta = Path.Combine(chooseTargetFolder, name, "Install", Path.GetFileName(filePath));
+                        File.Copy(filePath, cilovaCesta);
+                        this.Invoke(() => ChangeTaskBar());
+                    }
+                });
             }
             else
             {
-                if (checkComputer.Checked)
+                await Task.Run(() =>
                 {
-                    await Task.Run(() =>
+                    foreach (var name in namesCheckedList)
                     {
-                        foreach(var name in namesCheckedList)
-                        {
-                            string cilovaCesta = Path.Combine(chooseTargetFolder, name, "Install", Path.GetFileName(filePath));
-                            File.Copy(filePath, cilovaCesta);
-                            this.Invoke(() => ChangeTaskBar());
-                        }
-                    });
-                }
-                else
-                {
-                    await Task.Run(() =>
-                    {
-                        foreach (var name in namesCheckedList)
-                        {
-                            string cilovaCesta = Path.Combine(chooseTargetFolder, name, Path.GetFileName(filePath));
-                            File.Copy(filePath, cilovaCesta);
-                            this.Invoke(() => ChangeTaskBar());
-                        }
-                    });
-                }
-
+                        string cilovaCesta = Path.Combine(chooseTargetFolder, name, Path.GetFileName(filePath));
+                        File.Copy(filePath, cilovaCesta);
+                        this.Invoke(() => ChangeTaskBar());
+                    }
+                });
             }
 
             MessageBox.Show("Kopírování dokonèeno");

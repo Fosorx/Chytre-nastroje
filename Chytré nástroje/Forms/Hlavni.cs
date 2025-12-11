@@ -1,6 +1,7 @@
 using Microsoft.Win32;
 using Chytré_nástroje.Code;
 using System.Diagnostics;
+using Chytré_nástroje.Forms;
 
 namespace Chytré_nástroje
 {
@@ -37,8 +38,10 @@ namespace Chytré_nástroje
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Spusteni spusteni = new Spusteni();
-            spusteni.Show();
+            Hlavni_2 hlavni_2 = new Hlavni_2();
+            hlavni_2.Show();
+            //Spusteni spusteni = new Spusteni();
+            //spusteni.Show();
         }
 
         private async Task AutoUpdate()
