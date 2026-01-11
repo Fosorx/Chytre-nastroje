@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             loginPanel = new Panel();
-            button1 = new Button();
+            button_login = new Button();
             textBox_password = new TextBox();
             label_password = new Label();
             label_title_2 = new Label();
             label_title_1 = new Label();
+            panelForms = new Panel();
             loginPanel.SuspendLayout();
             SuspendLayout();
             // 
             // loginPanel
             // 
             loginPanel.BackColor = Color.FromArgb(0, 0, 37);
-            loginPanel.Controls.Add(button1);
+            loginPanel.Controls.Add(button_login);
             loginPanel.Controls.Add(textBox_password);
             loginPanel.Controls.Add(label_password);
             loginPanel.Controls.Add(label_title_2);
@@ -51,15 +52,16 @@
             loginPanel.Size = new Size(524, 681);
             loginPanel.TabIndex = 1;
             // 
-            // button1
+            // button_login
             // 
-            button1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            button1.Location = new Point(92, 427);
-            button1.Name = "button1";
-            button1.Size = new Size(353, 37);
-            button1.TabIndex = 7;
-            button1.Text = "Přihlásit se";
-            button1.UseVisualStyleBackColor = true;
+            button_login.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            button_login.Location = new Point(92, 427);
+            button_login.Name = "button_login";
+            button_login.Size = new Size(353, 37);
+            button_login.TabIndex = 7;
+            button_login.Text = "Přihlásit se";
+            button_login.UseVisualStyleBackColor = true;
+            button_login.Click += button_login_Click;
             // 
             // textBox_password
             // 
@@ -104,6 +106,13 @@
             label_title_1.TabIndex = 3;
             label_title_1.Text = "Vítejte v programu";
             // 
+            // panelForms
+            // 
+            panelForms.Location = new Point(527, 0);
+            panelForms.Name = "panelForms";
+            panelForms.Size = new Size(741, 681);
+            panelForms.TabIndex = 2;
+            // 
             // Hlavni_2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -111,6 +120,7 @@
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1264, 681);
+            Controls.Add(panelForms);
             Controls.Add(loginPanel);
             MaximizeBox = false;
             Name = "Hlavni_2";
@@ -126,7 +136,8 @@
         private Label label_title_1;
         private Label label_password;
         private Label label_title_2;
-        private Button button1;
+        private Button button_login;
         private TextBox textBox_password;
+        private Panel panelForms;
     }
 }

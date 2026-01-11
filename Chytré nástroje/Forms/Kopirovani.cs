@@ -5,7 +5,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Chytré_nástroje
 {
-    public partial class Kopirovani : Form
+    public partial class Kopirovani : UserControl
     {
         public Kopirovani()
         {
@@ -90,21 +90,6 @@ namespace Chytré_nástroje
                 isFolder = true;
             }
             CopyButton.Enabled = true;
-        }
-
-        private void chooseTargetFolderButton_Click(object sender, EventArgs e)
-        {
-            using (var dialog = new FolderBrowserDialog())
-            {
-                dialog.Description = "Vyberte složku";
-                dialog.UseDescriptionForTitle = true; 
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    chooseTargetFolder = dialog.SelectedPath;
-                    selectedTargetFolder.Text = chooseTargetFolder;
-                }
-            }
         }
 
         private async void CopyButton_Click(object sender, EventArgs e)
@@ -200,7 +185,6 @@ namespace Chytré_nástroje
             chooseFileButton.Enabled = false;
             chooseFolderButton.Enabled = false;
             CopyButton.Enabled = false;
-            selectedTargetFolder.Visible = false;
         }
 
         private void ChooseAllButton_Click(object sender, EventArgs e)
@@ -219,18 +203,6 @@ namespace Chytré_nástroje
                 {
                     namesCheckBox.SetItemChecked(i, false);
                 }
-            }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkComputer.Checked)
-            {
-                selectedTargetFolder.Visible = true;
-            }
-            else
-            {
-                selectedTargetFolder.Visible = false;
             }
         }
     }

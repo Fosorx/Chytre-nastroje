@@ -41,7 +41,6 @@
             namesCheckBox = new CheckedListBox();
             selectedFile = new Label();
             selectedFolder = new Label();
-            selectedTargetFolder = new Label();
             ChooseAllButton = new Button();
             checkComputer = new CheckBox();
             SuspendLayout();
@@ -94,7 +93,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(409, 153);
+            label2.Location = new Point(409, 179);
             label2.Name = "label2";
             label2.Size = new Size(205, 21);
             label2.TabIndex = 5;
@@ -102,7 +101,7 @@
             // 
             // chooseFolderButton
             // 
-            chooseFolderButton.Location = new Point(635, 154);
+            chooseFolderButton.Location = new Point(635, 180);
             chooseFolderButton.Name = "chooseFolderButton";
             chooseFolderButton.Size = new Size(75, 23);
             chooseFolderButton.TabIndex = 6;
@@ -121,7 +120,7 @@
             // 
             // CopyButton
             // 
-            CopyButton.Location = new Point(409, 214);
+            CopyButton.Location = new Point(409, 250);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(301, 23);
             CopyButton.TabIndex = 10;
@@ -131,7 +130,7 @@
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(409, 257);
+            progressBar.Location = new Point(409, 293);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(301, 23);
             progressBar.TabIndex = 14;
@@ -147,7 +146,7 @@
             // selectedFile
             // 
             selectedFile.AutoSize = true;
-            selectedFile.Location = new Point(728, 124);
+            selectedFile.Location = new Point(419, 150);
             selectedFile.Name = "selectedFile";
             selectedFile.Size = new Size(0, 15);
             selectedFile.TabIndex = 16;
@@ -155,18 +154,10 @@
             // selectedFolder
             // 
             selectedFolder.AutoSize = true;
-            selectedFolder.Location = new Point(728, 159);
+            selectedFolder.Location = new Point(419, 214);
             selectedFolder.Name = "selectedFolder";
             selectedFolder.Size = new Size(0, 15);
             selectedFolder.TabIndex = 17;
-            // 
-            // selectedTargetFolder
-            // 
-            selectedTargetFolder.AutoSize = true;
-            selectedTargetFolder.Location = new Point(728, 201);
-            selectedTargetFolder.Name = "selectedTargetFolder";
-            selectedTargetFolder.Size = new Size(0, 15);
-            selectedTargetFolder.TabIndex = 18;
             // 
             // ChooseAllButton
             // 
@@ -187,17 +178,14 @@
             checkComputer.TabIndex = 20;
             checkComputer.Text = "Počítače";
             checkComputer.UseVisualStyleBackColor = true;
-            checkComputer.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // Kopirovani
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(823, 450);
             Controls.Add(checkComputer);
             Controls.Add(ChooseAllButton);
-            Controls.Add(selectedTargetFolder);
             Controls.Add(selectedFolder);
             Controls.Add(selectedFile);
             Controls.Add(namesCheckBox);
@@ -210,10 +198,8 @@
             Controls.Add(label1);
             Controls.Add(nadpis);
             Controls.Add(chooseFolderNamesButton);
-            HelpButton = true;
             Name = "Kopirovani";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Kopírování souborů / složek";
+            Size = new Size(823, 450);
             Load += Kopirovani_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -234,7 +220,6 @@
         private CheckedListBox namesCheckBox;
         private Label selectedFile;
         private Label selectedFolder;
-        private Label selectedTargetFolder;
         private Button ChooseAllButton;
         private CheckBox checkComputer;
     }
