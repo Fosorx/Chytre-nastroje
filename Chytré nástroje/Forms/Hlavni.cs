@@ -38,7 +38,7 @@ namespace Chytré_nástroje
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Hlavni_2 hlavni_2 = new Hlavni_2();
+            Login hlavni_2 = new Login();
             hlavni_2.Show();
             //Spusteni spusteni = new Spusteni();
             //spusteni.Show();

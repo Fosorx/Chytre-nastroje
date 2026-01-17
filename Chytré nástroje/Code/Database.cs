@@ -11,26 +11,29 @@ namespace Chytré_nástroje.Code
 {
     internal class Database
     {
-        public async Task Login()
+        public async Task<bool> LoginAsync(string username, string password)
         {
-            string connString = "Server=localhost;Database=SmartTools;Trusted_Connection=True;Encrypt=False;";
-
+            const string connString = "Server=localhost;Database=SmartTools;Trusted_Connection=True;Encrypt=False;";
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    await conn.OpenAsync();
-                    MessageBox.Show("Spojení s databází SmartTools OK!");
-                }
+                using var conn = new SqlConnection(connString);
+                await conn.OpenAsync();
+
+                using var command = conn.CreateCommand();
+                command.CommandText = @"SELECT COUNT(*) FROM Users WHERE username = @username AND password = @password;";
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+
+                int count = (int)await command.ExecuteScalarAsync();
+                return count == 1;
             }
             catch (SqlException ex)
             {
                 MessageBox.Show($"SQL chyba: {ex.Message}");
+                return false;
             }
-
-
         }
     }
-    
+
 }

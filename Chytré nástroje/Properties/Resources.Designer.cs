@@ -63,9 +63,49 @@ namespace Chytré_nástroje.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo___smart_tools {
+            get {
+                object obj = ResourceManager.GetObject("Logo - smart tools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Smart___Smart_tools {
+            get {
+                object obj = ResourceManager.GetObject("Smart - Smart tools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Smart_tools {
             get {
                 object obj = ResourceManager.GetObject("Smart tools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Smart_tools___logo {
+            get {
+                object obj = ResourceManager.GetObject("Smart tools - logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tools___Smart_tools {
+            get {
+                object obj = ResourceManager.GetObject("Tools - Smart tools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
