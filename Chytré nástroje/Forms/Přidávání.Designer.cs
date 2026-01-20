@@ -44,7 +44,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(539, 108);
+            button1.Location = new Point(558, 161);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F);
-            label1.Location = new Point(12, 104);
+            label1.Location = new Point(31, 157);
             label1.Name = "label1";
             label1.Size = new Size(256, 25);
             label1.TabIndex = 1;
@@ -65,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(620, 112);
+            label2.Location = new Point(639, 165);
             label2.Name = "label2";
             label2.Size = new Size(93, 15);
             label2.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             AddUsersButton.Enabled = false;
             AddUsersButton.Font = new Font("Segoe UI", 15F);
-            AddUsersButton.Location = new Point(12, 258);
+            AddUsersButton.Location = new Point(12, 385);
             AddUsersButton.Name = "AddUsersButton";
             AddUsersButton.Size = new Size(770, 41);
             AddUsersButton.TabIndex = 3;
@@ -96,7 +96,7 @@
             // 
             // YearOfGraduationTextBox
             // 
-            YearOfGraduationTextBox.Location = new Point(539, 147);
+            YearOfGraduationTextBox.Location = new Point(558, 200);
             YearOfGraduationTextBox.Name = "YearOfGraduationTextBox";
             YearOfGraduationTextBox.Size = new Size(75, 23);
             YearOfGraduationTextBox.TabIndex = 5;
@@ -105,7 +105,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F);
-            label4.Location = new Point(12, 145);
+            label4.Location = new Point(31, 198);
             label4.Name = "label4";
             label4.Size = new Size(392, 25);
             label4.TabIndex = 6;
@@ -115,7 +115,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14F);
-            label5.Location = new Point(12, 187);
+            label5.Location = new Point(31, 240);
             label5.Name = "label5";
             label5.Size = new Size(342, 25);
             label5.TabIndex = 7;
@@ -123,14 +123,14 @@
             // 
             // LetterClassTextBox
             // 
-            LetterClassTextBox.Location = new Point(539, 194);
+            LetterClassTextBox.Location = new Point(558, 247);
             LetterClassTextBox.Name = "LetterClassTextBox";
             LetterClassTextBox.Size = new Size(75, 23);
             LetterClassTextBox.TabIndex = 8;
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(12, 305);
+            progressBar1.Location = new Point(12, 432);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(770, 23);
             progressBar1.TabIndex = 9;
@@ -146,7 +146,7 @@
             // 
             // LogOpenButton
             // 
-            LogOpenButton.Location = new Point(707, 344);
+            LogOpenButton.Location = new Point(707, 471);
             LogOpenButton.Name = "LogOpenButton";
             LogOpenButton.Size = new Size(75, 23);
             LogOpenButton.TabIndex = 11;
@@ -158,7 +158,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(794, 379);
+            ClientSize = new Size(809, 521);
             Controls.Add(LogOpenButton);
             Controls.Add(Output);
             Controls.Add(progressBar1);

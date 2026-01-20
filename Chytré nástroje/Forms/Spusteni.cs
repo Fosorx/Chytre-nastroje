@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Chytré_nástroje
 {
-    public partial class Spusteni : Form
+    public partial class Spusteni : UserControl
     {
         public Spusteni()
         {

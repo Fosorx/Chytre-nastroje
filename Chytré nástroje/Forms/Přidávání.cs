@@ -5,7 +5,7 @@ using System.Management.Automation;
 
 namespace Chytré_nástroje
 {
-    public partial class Přidávání : Form
+    public partial class Přidávání : UserControl
     {
         public Přidávání()
         {

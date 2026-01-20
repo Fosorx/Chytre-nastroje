@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             loginPanel = new Panel();
             pictureBox_toolsText_smartTools = new PictureBox();
             pictureBox_smartTexr_smartTools = new PictureBox();
@@ -47,6 +46,7 @@
             // 
             // loginPanel
             // 
+            loginPanel.AutoSize = true;
             loginPanel.BackColor = Color.FromArgb(11, 24, 33);
             loginPanel.Controls.Add(pictureBox_toolsText_smartTools);
             loginPanel.Controls.Add(pictureBox_smartTexr_smartTools);
@@ -57,10 +57,10 @@
             loginPanel.Controls.Add(textBox_userName);
             loginPanel.Controls.Add(label_password);
             loginPanel.Controls.Add(label_title_1);
-            loginPanel.Location = new Point(-8, 0);
+            loginPanel.Location = new Point(0, 0);
             loginPanel.Margin = new Padding(0);
             loginPanel.Name = "loginPanel";
-            loginPanel.Size = new Size(532, 681);
+            loginPanel.Size = new Size(536, 700);
             loginPanel.TabIndex = 1;
             // 
             // pictureBox_toolsText_smartTools
@@ -119,13 +119,20 @@
             // 
             // button_login
             // 
+            button_login.BackColor = Color.FromArgb(213, 229, 241);
+            button_login.FlatAppearance.BorderColor = Color.FromArgb(213, 229, 241);
+            button_login.FlatAppearance.BorderSize = 0;
+            button_login.FlatAppearance.MouseDownBackColor = Color.FromArgb(213, 229, 241);
+            button_login.FlatAppearance.MouseOverBackColor = Color.FromArgb(213, 229, 241);
+            button_login.FlatStyle = FlatStyle.Flat;
             button_login.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            button_login.Location = new Point(92, 495);
+            button_login.Location = new Point(92, 503);
+            button_login.Margin = new Padding(0);
             button_login.Name = "button_login";
             button_login.Size = new Size(353, 37);
             button_login.TabIndex = 2;
             button_login.Text = "Přihlásit se";
-            button_login.UseVisualStyleBackColor = true;
+            button_login.UseVisualStyleBackColor = false;
             button_login.Click += button_login_Click;
             // 
             // textBox_userName
@@ -168,18 +175,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(516, 681);
             Controls.Add(loginPanel);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
             Name = "Login";
-            Text = "Smart tools";
+            Size = new Size(536, 700);
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_toolsText_smartTools).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_smartTexr_smartTools).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_logo_smartTools).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

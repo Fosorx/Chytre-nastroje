@@ -10,7 +10,6 @@ namespace Chytré_nástroje
         public Kopirovani()
         {
             InitializeComponent();
-
         }
         List<string> namesList = new List<string>();
         List<string> namesCheckedList = new List<string>();

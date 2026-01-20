@@ -121,16 +121,25 @@
   <data name="Smart tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\photos-icons\Smart tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Smart tools - logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Smart tools - logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo - smart tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo - smart tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Smart - Smart tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Smart - Smart tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo - smart tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo - smart tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="menu-burger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu-burger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tools - Smart tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tools - Smart tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle-user1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circle-user1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Smart tools - logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Smart tools - logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cross-small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cross-small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

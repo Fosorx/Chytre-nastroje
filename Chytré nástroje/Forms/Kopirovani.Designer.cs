@@ -43,11 +43,12 @@
             selectedFolder = new Label();
             ChooseAllButton = new Button();
             checkComputer = new CheckBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // chooseFolderNamesButton
             // 
-            chooseFolderNamesButton.Location = new Point(395, 63);
+            chooseFolderNamesButton.Location = new Point(409, 154);
             chooseFolderNamesButton.Name = "chooseFolderNamesButton";
             chooseFolderNamesButton.Size = new Size(343, 23);
             chooseFolderNamesButton.TabIndex = 0;
@@ -63,17 +64,17 @@
             // 
             nadpis.AutoSize = true;
             nadpis.Font = new Font("Segoe UI", 14F);
-            nadpis.Location = new Point(391, 26);
+            nadpis.Location = new Point(405, 117);
             nadpis.Name = "nadpis";
             nadpis.Size = new Size(347, 25);
             nadpis.TabIndex = 1;
-            nadpis.Text = "Vyberte prosím složku se složkami žáků.";
+            nadpis.Text = "Vyberte prosím složku se složkami žáků:";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(409, 118);
+            label1.Location = new Point(423, 209);
             label1.Name = "label1";
             label1.Size = new Size(210, 21);
             label1.TabIndex = 3;
@@ -81,7 +82,7 @@
             // 
             // chooseFileButton
             // 
-            chooseFileButton.Location = new Point(635, 119);
+            chooseFileButton.Location = new Point(649, 210);
             chooseFileButton.Name = "chooseFileButton";
             chooseFileButton.Size = new Size(75, 23);
             chooseFileButton.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(409, 179);
+            label2.Location = new Point(423, 270);
             label2.Name = "label2";
             label2.Size = new Size(205, 21);
             label2.TabIndex = 5;
@@ -101,7 +102,7 @@
             // 
             // chooseFolderButton
             // 
-            chooseFolderButton.Location = new Point(635, 180);
+            chooseFolderButton.Location = new Point(649, 271);
             chooseFolderButton.Name = "chooseFolderButton";
             chooseFolderButton.Size = new Size(75, 23);
             chooseFolderButton.TabIndex = 6;
@@ -112,7 +113,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(50, 375);
+            label3.Location = new Point(64, 466);
             label3.Name = "label3";
             label3.Size = new Size(177, 15);
             label3.TabIndex = 7;
@@ -120,7 +121,7 @@
             // 
             // CopyButton
             // 
-            CopyButton.Location = new Point(409, 250);
+            CopyButton.Location = new Point(423, 341);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(301, 23);
             CopyButton.TabIndex = 10;
@@ -130,7 +131,7 @@
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(409, 293);
+            progressBar.Location = new Point(423, 384);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(301, 23);
             progressBar.TabIndex = 14;
@@ -138,7 +139,7 @@
             // namesCheckBox
             // 
             namesCheckBox.FormattingEnabled = true;
-            namesCheckBox.Location = new Point(12, 26);
+            namesCheckBox.Location = new Point(26, 117);
             namesCheckBox.Name = "namesCheckBox";
             namesCheckBox.Size = new Size(281, 346);
             namesCheckBox.TabIndex = 15;
@@ -146,7 +147,7 @@
             // selectedFile
             // 
             selectedFile.AutoSize = true;
-            selectedFile.Location = new Point(419, 150);
+            selectedFile.Location = new Point(433, 241);
             selectedFile.Name = "selectedFile";
             selectedFile.Size = new Size(0, 15);
             selectedFile.TabIndex = 16;
@@ -154,14 +155,14 @@
             // selectedFolder
             // 
             selectedFolder.AutoSize = true;
-            selectedFolder.Location = new Point(419, 214);
+            selectedFolder.Location = new Point(433, 305);
             selectedFolder.Name = "selectedFolder";
             selectedFolder.Size = new Size(0, 15);
             selectedFolder.TabIndex = 17;
             // 
             // ChooseAllButton
             // 
-            ChooseAllButton.Location = new Point(50, 393);
+            ChooseAllButton.Location = new Point(64, 484);
             ChooseAllButton.Name = "ChooseAllButton";
             ChooseAllButton.Size = new Size(177, 23);
             ChooseAllButton.TabIndex = 19;
@@ -172,18 +173,29 @@
             // checkComputer
             // 
             checkComputer.AutoSize = true;
-            checkComputer.Location = new Point(233, 397);
+            checkComputer.Location = new Point(247, 488);
             checkComputer.Name = "checkComputer";
             checkComputer.Size = new Size(71, 19);
             checkComputer.TabIndex = 20;
             checkComputer.Text = "Počítače";
             checkComputer.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            label4.Location = new Point(279, 29);
+            label4.Name = "label4";
+            label4.Size = new Size(272, 37);
+            label4.TabIndex = 21;
+            label4.Text = "Kopírování souborů";
+            // 
             // Kopirovani
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
+            Controls.Add(label4);
             Controls.Add(checkComputer);
             Controls.Add(ChooseAllButton);
             Controls.Add(selectedFolder);
@@ -199,7 +211,7 @@
             Controls.Add(nadpis);
             Controls.Add(chooseFolderNamesButton);
             Name = "Kopirovani";
-            Size = new Size(823, 450);
+            Size = new Size(825, 560);
             Load += Kopirovani_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -222,5 +234,6 @@
         private Label selectedFolder;
         private Button ChooseAllButton;
         private CheckBox checkComputer;
+        private Label label4;
     }
 }
