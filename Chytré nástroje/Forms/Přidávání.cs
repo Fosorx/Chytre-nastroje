@@ -1,196 +1,185 @@
-using Chytré_nástroje.Code;
-using ClosedXML.Excel;
-using Microsoft.VisualBasic.ApplicationServices;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Management.Automation;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Chytré_nástroje.Code;
 
 namespace Chytré_nástroje
 {
     public partial class Přidávání : UserControl
     {
+        private List<Users> seznamUzivatelu = new List<Users>();
+        private string cestaKVybranemuSouboru = string.Empty;
+
         public Přidávání()
         {
             InitializeComponent();
+            label2.Visible = false;
         }
-
-        Users Users;
-
-        string filePath = string.Empty;
-        List<Users> users_list = new List<Users>();
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog oknoProVyberSouboru = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Excel files (*.xlsx;*.xlsm)|*.xlsx;*.xlsm";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
+                // Změna filtru na Excel soubory
+                oknoProVyberSouboru.Filter = "Excel soubory (*.xlsx)|*.xlsx|Všechny soubory (*.*)|*.*";
+                oknoProVyberSouboru.Title = "Vyberte soubor exportovaný z Bakalářů";
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (oknoProVyberSouboru.ShowDialog() == DialogResult.OK)
                 {
-                    filePath = openFileDialog.FileName;
+                    this.cestaKVybranemuSouboru = oknoProVyberSouboru.FileName;
+
+                    // Volitelný label pro zobrazení názvu souboru
                     label2.Visible = true;
-                    label2.Text = "Vybraný soubor: " + filePath;
-                    AddUsersButton.Enabled = true;
-                    users_list = LoadFromExcel();
-                }
-            }
-        }
+                    label2.Text = "Vybraný soubor: " + Path.GetFileName(this.cestaKVybranemuSouboru);
 
-        private List<Users> LoadFromExcel()
-        {
-            var users = new List<Users>();
-
-
-            using (var workbook = new XLWorkbook(filePath))
-            {
-                var worksheet = workbook.Worksheet(1);
-                var rows = worksheet.RangeUsed().RowsUsed().Skip(2);
-
-                foreach (var row in rows)
-                {
-                    if (!row.Cell(1).IsEmpty())
+                    try
                     {
-                        string _name = row.Cell(4).GetString();
-                        string _surname = row.Cell(5).GetString();
-                        string _userName = row.Cell(6).GetString();
+                        // Místo JSON deserializace zavoláme naši metodu pro Excel
+                        this.seznamUzivatelu = Users.LoadFromExcel(this.cestaKVybranemuSouboru);
 
-                        users.Add(new Users { name = _name, surname = _surname, userName = _userName });
-                    }
-                }
-            }
-            return users;
-        }
-
-        private async Task AddUsersToAD()
-        {
-            progressBar1.Minimum = 0;
-            progressBar1.Maximum = users_list.Count;
-            progressBar1.Value = 0;
-
-            await Task.Run(() =>
-            {
-                using PowerShell ps = PowerShell.Create();
-
-                ps.AddScript("Set-ExecutionPolicy Bypass -Scope Process -Force; Import-Module ActiveDirectory").Invoke();
-                ps.Commands.Clear();
-
-                foreach (var user in users_list)
-                {
-                    string profilePath = $@"\\BLEKVM1\Profiles\{YearOfGraduationTextBox.Text}\{user.userName}";
-                    string homeDirectory = $@"\\BLEKVM1\DriveK\Student\{YearOfGraduationTextBox.Text}\{user.userName}";
-
-                    string script = @"
-                    param($username, $firstname, $lastname, $domain, $profilePath, $homeDirectory, $yearOfGraduation, $class)
-
-                    New-ADUser -Name ""$firstname $lastname"" `
-                               -GivenName $firstname `
-                               -Surname $lastname `
-                               -SamAccountName $username `
-                               -UserPrincipalName ""$username@$domain"" `
-                               -Path ""OU=$class,OU=$yearOfGraduation,OU=Studenti,DC=blek,DC=cz"" `
-                               -AccountPassword (ConvertTo-SecureString ""asdfASDF1234!"" -AsPlainText -Force) `
-                               -Enabled $true `
-                               -ProfilePath $profilePath `
-                               -HomeDirectory $homeDirectory `
-                               -HomeDrive ""K:"" `
-                               -ChangePasswordAtLogon $true
-
-                    if (-not (Test-Path $homeDirectory)) {
-                        New-Item -ItemType Directory -Path $homeDirectory -Force | Out-Null
-                    }
-
-                    $acl = Get-Acl $homeDirectory
-                    $identity = ""$domain\$username""
-                    $rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
-                        $identity, ""FullControl"", ""ContainerInherit,ObjectInherit"", ""None"", ""Allow""
-                    )
-                    $acl.SetAccessRule($rule)
-                    Set-Acl $homeDirectory $acl
-                ";
-
-                    ps.AddScript(script)
-                      .AddParameter("username", user.userName)
-                      .AddParameter("firstname", user.name)
-                      .AddParameter("lastname", user.surname)
-                      .AddParameter("domain", "BLEK-CZ")
-                      .AddParameter("profilePath", profilePath)
-                      .AddParameter("homeDirectory", homeDirectory)
-                      .AddParameter("yearOfGraduation", YearOfGraduationTextBox.Text)
-                      .AddParameter("class", LetterClassTextBox.Text);
-
-                    var results = ps.Invoke();
-
-                    // Zpracování výsledků musí být voláno na hlavním vlákně (UI thread)
-                    this.Invoke(() =>
-                    {
-                        if (ps.Streams.Error.Count > 0)
+                        if (this.seznamUzivatelu != null && this.seznamUzivatelu.Count > 0)
                         {
-                            foreach (var error in ps.Streams.Error)
-                            {
-                                Output.Text = $"Chyba při vytváření uživatele {user.userName}";
-                                using (StreamWriter sw = File.AppendText("log.txt"))
-                                {
-                                    sw.WriteLine("Chyba ze dne: " + DateTime.Now);
-                                    sw.WriteLine($"Chyba při vytváření uživatele {user.userName}: {error}");
-                                }
-                            }
-                            ps.Streams.Error.Clear();
+                            AddUsersButton.Enabled = true;
+
+                            // Předpokládám, že tato metoda vykresluje data do nějakého gridu nebo listu
+                            ViewUsers(null, null);
+
+                            MessageBox.Show($"Z Excelu bylo úspěšně načteno a transformováno {this.seznamUzivatelu.Count} studentů.");
                         }
                         else
                         {
-                            Output.Text = $"Uživatel {user.userName} úspěšně vytvořen.";
+                            MessageBox.Show("V souboru nebyla nalezena žádná data na očekávaných pozicích.");
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        // ClosedXML může vyhodit chybu, pokud je soubor např. otevřený v Excelu
+                        MessageBox.Show("Chyba při čtení Excelu: " + ex.Message +
+                            "\n\nUjistěte se, že soubor není otevřen v jiném programu.");
+                    }
+                }
+            }
+        }
 
-                        progressBar1.Value += 1;
-                    });
+        private async Task SpustitProcesPridavaniDoAD()
+        {
+            string rokText = YearOfGraduationTextBox.Text.Trim();
+            string tridaText = LetterClassTextBox.Text.Trim();
+            string hesloUzivateluText = PasswordUsersTextBox.Text.Trim();
 
-                    ps.Commands.Clear();
+            if (string.IsNullOrEmpty(rokText) || string.IsNullOrEmpty(tridaText))
+            {
+                MessageBox.Show("Vyplň rok a třídu!");
+                return;
+            }
+            else if (string.IsNullOrEmpty(hesloUzivateluText))
+            {
+                MessageBox.Show("Vyplň heslo pro uživatele!");
+                return;
+            }
+
+            progressBar1.Value = 0;
+            progressBar1.Maximum = seznamUzivatelu.Count;
+
+            await Task.Run(() =>
+            {
+                foreach (var student in seznamUzivatelu)
+                {
+                    // Sestavíme cesty přímo v C#
+                    string hotovaCilovaOU = $"OU={tridaText},OU={rokText},OU=Studenti,DC=blek,DC=cz";
+                    string hotovaDomovskaSlozka = $@"\\BLEKVM1\DriveK\Student\{rokText}\{student.userName}";
+                    string hotovaProfilCesta = $@"\\BLEKVM1\Profiles\{rokText}\{student.userName}";
+
+                    // Sestavíme skript jako jeden řádek pro příkazovou řádku
+                    // Používáme -EncodedCommand, aby se nerozbila diakritika
+                    // Sestavíme skript jako jeden řádek
+                    string powershellSkript = $@"
+                        Import-Module ActiveDirectory
+                        $heslo = ConvertTo-SecureString '{hesloUzivateluText}' -AsPlainText -Force
+    
+                        # Přidán parametr -DisplayName
+                        $novyUzivatel = New-ADUser -Name '{student.name} {student.surname}' `
+                                       -DisplayName '{student.name} {student.surname}' `
+                                       -GivenName '{student.name}' `
+                                       -Surname '{student.surname}' `
+                                       -SamAccountName '{student.userName}' `
+                                       -UserPrincipalName '{student.userName}@blek.cz' `
+                                       -Path '{hotovaCilovaOU}' `
+                                       -AccountPassword $heslo `
+                                       -Enabled $true `
+                                       -ProfilePath '{hotovaProfilCesta}' `
+                                       -HomeDirectory '{hotovaDomovskaSlozka}' `
+                                       -HomeDrive 'K:' `
+                                       -ChangePasswordAtLogon $true -PassThru
+
+                        New-Item -Path '{hotovaDomovskaSlozka}' -ItemType Directory -Force
+                        $acl = Get-Acl '{hotovaDomovskaSlozka}'
+                        $pravidlo = New-Object System.Security.AccessControl.FileSystemAccessRule($novyUzivatel.SID, 'FullControl', 'ContainerInherit,ObjectInherit', 'None', 'Allow')
+                        $acl.SetAccessRule($pravidlo)
+                        Set-Acl '{hotovaDomovskaSlozka}' $acl";
+
+                    // Převedeme skript na Base64, aby ho PowerShell pobral bez problémů s uvozovkami
+                    byte[] scriptBytes = System.Text.Encoding.Unicode.GetBytes(powershellSkript);
+                    string encodedScript = Convert.ToBase64String(scriptBytes);
+
+                    // Spustíme proces powershell.exe
+                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = "powershell.exe",
+                        Arguments = $"-NoProfile -ExecutionPolicy Bypass -EncodedCommand {encodedScript}",
+                        CreateNoWindow = true,
+                        UseShellExecute = false,
+                        RedirectStandardError = true
+                    };
+
+                    using (var proces = System.Diagnostics.Process.Start(psi))
+                    {
+                        string error = proces.StandardError.ReadToEnd();
+                        proces.WaitForExit();
+
+                        this.Invoke(new Action(() =>
+                        {
+                            if (!string.IsNullOrEmpty(error))
+                            {
+                                Output.Text = "CHYBA: " + student.userName;
+                                // Pokud chceš vidět přesnou chybu, odkomentuj: MessageBox.Show(error);
+                            }
+                            else
+                            {
+                                Output.Text = "HOTOVO: " + student.userName;
+                            }
+                            progressBar1.Value++;
+                        }));
+                    }
                 }
             });
         }
 
+        private void ViewUsers(object sender, EventArgs e)
+        {
+            UsersListView.Items.Clear();
+            foreach (var student in seznamUzivatelu)
+            {
+                var item = new ListViewItem(student.userName);
+                UsersListView.Items.Add(item);
+            }
+        }
+
         private async void AddUsersButton_Click(object sender, EventArgs e)
         {
-            if (YearOfGraduationTextBox.Text == string.Empty || LetterClassTextBox.Text == string.Empty)
-            {
-                MessageBox.Show("Zadejte ročník nebo třídu.");
-                return;
-            }
-            else if (users_list.Count == 0)
-            {
-                MessageBox.Show("Nejsou načteni žádní uživatelé.");
-                return;
-            }
-            else if (YearOfGraduationTextBox.Text.Length != 4 || !int.TryParse(YearOfGraduationTextBox.Text, out _))
-            {
-                MessageBox.Show("Zadejte platný ročník ve formátu YYYY (např. 2023).");
-                return;
-            }
-            else if (LetterClassTextBox.Text.Length != 1 || !char.IsLetter(LetterClassTextBox.Text[0]))
-            {
-                MessageBox.Show("Zadejte platnou třídu (např. A, B, C).");
-                return;
-            }
-
-            AddUsersButton.Enabled = false;
-            await AddUsersToAD();
-            AddUsersButton.Enabled = true;
-            MessageBox.Show("Hotovo.");
+            await SpustitProcesPridavaniDoAD();
         }
 
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void PathInformationButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt");
-            System.Diagnostics.Process.Start("notepad.exe", path);
+            MessageBox.Show("OU pro třídu: OU={třída},OU={rok},OU=Studenti,DC=blek,DC=cz\n" +
+                "Domovská složka: \\\\BLEKVM1\\DriveK\\Student\\{rok}\\{uživatelské_jméno}\n" +
+                "Profilová cesta: \\\\BLEKVM1\\Profiles\\{rok}\\{uživatelské_jméno}");
         }
     }
 }

@@ -46,7 +46,6 @@
             MaximizeBox = false;
             Name = "Hlavni2";
             SizeGripStyle = SizeGripStyle.Hide;
-            TopMost = true;
             ResumeLayout(false);
         }
 

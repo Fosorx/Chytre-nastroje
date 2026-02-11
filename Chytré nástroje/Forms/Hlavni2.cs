@@ -15,7 +15,7 @@ namespace Chytré_nástroje.Forms
         {
             InitializeComponent();
 
-            panelPrograms = DesignComponent.CreatePanel(265, 0, 823, 450, "Kopirovani");
+            panelPrograms = DesignComponent.CreatePanel(265, 0, 825, 560, "Kopirovani");
             panelPrograms.Visible = false;
             this.Controls.Add(panelPrograms);
 
