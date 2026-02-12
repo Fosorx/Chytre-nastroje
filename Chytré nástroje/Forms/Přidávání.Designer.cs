@@ -157,6 +157,7 @@
             LogOpenButton.TabIndex = 11;
             LogOpenButton.Text = "Log";
             LogOpenButton.UseVisualStyleBackColor = true;
+            LogOpenButton.Click += LogOpenButton_Click;
             // 
             // label6
             // 
