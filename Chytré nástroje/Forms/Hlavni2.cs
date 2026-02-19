@@ -30,6 +30,8 @@ namespace Chytré_nástroje.Forms
             menuControl.PictureBox_MenuBar += ChangePictureBarMenu;
             menuControl.ButtonPridavani += LoadControlPridavani;
             menuControl.ButtonMazani += LoadControlMazani;
+            menuControl.ButtonSpravaWinget += LoadControlSpravaWinget;
+            menuControl.ButttonSpravaInstalaci += LoadControlSpravaInstalaci;
             //menuControl.PictureBox_MenuBar;
 
 
@@ -99,6 +101,22 @@ namespace Chytré_nástroje.Forms
             mazani.Dock = DockStyle.Fill;
             panelPrograms.Controls.Clear();
             panelPrograms.Controls.Add(mazani);
+        }
+
+        public void LoadControlSpravaWinget()
+        {
+            var spravaWinget = new SpravaWingetBalicku();
+            spravaWinget.Dock = DockStyle.Fill;
+            panelPrograms.Controls.Clear();
+            panelPrograms.Controls.Add(spravaWinget);
+        }
+
+        public void LoadControlSpravaInstalaci()
+        {
+            var spravaInstalaci = new SpravaPocitacovychProgramu();
+            spravaInstalaci.Dock = DockStyle.Fill;
+            panelPrograms.Controls.Clear();
+            panelPrograms.Controls.Add(spravaInstalaci);
         }
 
         public void ChangePictureBarMenu()

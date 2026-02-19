@@ -187,6 +187,8 @@ namespace Chytré_nástroje.Forms
 
         private async void GetProfilesButton_Click(object sender, EventArgs e)
         {
+            DeleteProfileButton.Enabled = true;
+
             if (ComputersComboBox.SelectedIndex == -1) return;
 
             GetProfilesButton.Enabled = false;
@@ -204,13 +206,6 @@ namespace Chytré_nástroje.Forms
                                            $"CESTA: {vybrany.Slozka}\n" +
                                            $"SID: {vybrany.SID}";
 
-                // Mazání povolíme jen pokud v textu stavu není "AKTIVNI"
-                DeleteProfileButton.Enabled = !vybrany.Stav.ToUpper().Contains("AKTIVNI");
-            }
-            else
-            {
-                ProfileDetailsLabel.Text = "Vyberte profil ze seznamu...";
-                DeleteProfileButton.Enabled = false;
             }
         }
 

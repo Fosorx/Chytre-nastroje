@@ -36,7 +36,9 @@
             label_userName = new Label();
             label2 = new Label();
             pictureBox_menuBar = new PictureBox();
-            buttonMazani = new Button();
+            button_mazani = new Button();
+            button_sprava_winget = new Button();
+            button_sprava_instlaci = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_menuBar).BeginInit();
             SuspendLayout();
@@ -52,7 +54,7 @@
             button_kopirovani.Name = "button_kopirovani";
             button_kopirovani.Padding = new Padding(5);
             button_kopirovani.RightToLeft = RightToLeft.No;
-            button_kopirovani.Size = new Size(169, 52);
+            button_kopirovani.Size = new Size(169, 40);
             button_kopirovani.TabIndex = 0;
             button_kopirovani.Text = "Kopírování souborů";
             button_kopirovani.UseVisualStyleBackColor = false;
@@ -63,11 +65,11 @@
             button_spusteni.BackColor = Color.FromArgb(213, 229, 241);
             button_spusteni.FlatStyle = FlatStyle.Flat;
             button_spusteni.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button_spusteni.Location = new Point(41, 252);
+            button_spusteni.Location = new Point(41, 228);
             button_spusteni.Margin = new Padding(9, 10, 9, 10);
             button_spusteni.Name = "button_spusteni";
             button_spusteni.RightToLeft = RightToLeft.No;
-            button_spusteni.Size = new Size(169, 52);
+            button_spusteni.Size = new Size(169, 40);
             button_spusteni.TabIndex = 1;
             button_spusteni.Text = "Spuštění programů";
             button_spusteni.UseVisualStyleBackColor = false;
@@ -77,12 +79,12 @@
             // 
             button_pridavani.BackColor = Color.FromArgb(213, 229, 241);
             button_pridavani.FlatStyle = FlatStyle.Flat;
-            button_pridavani.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button_pridavani.Location = new Point(41, 324);
+            button_pridavani.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            button_pridavani.Location = new Point(41, 276);
             button_pridavani.Margin = new Padding(9, 10, 9, 10);
             button_pridavani.Name = "button_pridavani";
             button_pridavani.RightToLeft = RightToLeft.No;
-            button_pridavani.Size = new Size(169, 52);
+            button_pridavani.Size = new Size(169, 37);
             button_pridavani.TabIndex = 2;
             button_pridavani.Text = "Přidávání uživatelů do AD";
             button_pridavani.UseVisualStyleBackColor = false;
@@ -131,27 +133,59 @@
             pictureBox_menuBar.TabStop = false;
             pictureBox_menuBar.Click += pictureBox_menuBar_Click;
             // 
-            // buttonMazani
+            // button_mazani
             // 
-            buttonMazani.BackColor = Color.FromArgb(213, 229, 241);
-            buttonMazani.FlatStyle = FlatStyle.Flat;
-            buttonMazani.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            buttonMazani.Location = new Point(41, 396);
-            buttonMazani.Margin = new Padding(9, 10, 9, 10);
-            buttonMazani.Name = "buttonMazani";
-            buttonMazani.RightToLeft = RightToLeft.No;
-            buttonMazani.Size = new Size(169, 52);
-            buttonMazani.TabIndex = 8;
-            buttonMazani.Text = "Mazání profilů";
-            buttonMazani.UseVisualStyleBackColor = false;
-            buttonMazani.Click += buttonMazani_Click;
+            button_mazani.BackColor = Color.FromArgb(213, 229, 241);
+            button_mazani.FlatStyle = FlatStyle.Flat;
+            button_mazani.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            button_mazani.Location = new Point(41, 323);
+            button_mazani.Margin = new Padding(9, 10, 9, 10);
+            button_mazani.Name = "button_mazani";
+            button_mazani.RightToLeft = RightToLeft.No;
+            button_mazani.Size = new Size(169, 35);
+            button_mazani.TabIndex = 8;
+            button_mazani.Text = "Mazání profilů";
+            button_mazani.UseVisualStyleBackColor = false;
+            button_mazani.Click += buttonMazani_Click;
+            // 
+            // button_sprava_winget
+            // 
+            button_sprava_winget.BackColor = Color.FromArgb(213, 229, 241);
+            button_sprava_winget.FlatStyle = FlatStyle.Flat;
+            button_sprava_winget.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            button_sprava_winget.Location = new Point(41, 368);
+            button_sprava_winget.Margin = new Padding(9, 10, 9, 10);
+            button_sprava_winget.Name = "button_sprava_winget";
+            button_sprava_winget.RightToLeft = RightToLeft.No;
+            button_sprava_winget.Size = new Size(169, 37);
+            button_sprava_winget.TabIndex = 9;
+            button_sprava_winget.Text = "Správa Winget";
+            button_sprava_winget.UseVisualStyleBackColor = false;
+            button_sprava_winget.Click += button_sprava_winget_Click;
+            // 
+            // button_sprava_instlaci
+            // 
+            button_sprava_instlaci.BackColor = Color.FromArgb(213, 229, 241);
+            button_sprava_instlaci.FlatStyle = FlatStyle.Flat;
+            button_sprava_instlaci.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            button_sprava_instlaci.Location = new Point(41, 416);
+            button_sprava_instlaci.Margin = new Padding(9, 10, 9, 10);
+            button_sprava_instlaci.Name = "button_sprava_instlaci";
+            button_sprava_instlaci.RightToLeft = RightToLeft.No;
+            button_sprava_instlaci.Size = new Size(169, 37);
+            button_sprava_instlaci.TabIndex = 10;
+            button_sprava_instlaci.Text = "Správa instalací";
+            button_sprava_instlaci.UseVisualStyleBackColor = false;
+            button_sprava_instlaci.Click += button_sprava_instalaci_Click;
             // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(11, 24, 33);
-            Controls.Add(buttonMazani);
+            Controls.Add(button_sprava_instlaci);
+            Controls.Add(button_sprava_winget);
+            Controls.Add(button_mazani);
             Controls.Add(pictureBox_menuBar);
             Controls.Add(label2);
             Controls.Add(label_userName);
@@ -178,6 +212,8 @@
         private Label label_userName;
         private Label label2;
         private PictureBox pictureBox_menuBar;
-        private Button buttonMazani;
+        private Button button_mazani;
+        private Button button_sprava_winget;
+        private Button button_sprava_instlaci;
     }
 }
