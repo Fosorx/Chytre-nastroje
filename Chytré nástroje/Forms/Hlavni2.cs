@@ -29,6 +29,7 @@ namespace Chytré_nástroje.Forms
             menuControl.ButtonKopirovani += LoadControlKopirovani;
             menuControl.PictureBox_MenuBar += ChangePictureBarMenu;
             menuControl.ButtonPridavani += LoadControlPridavani;
+            menuControl.ButtonMazani += LoadControlMazani;
             //menuControl.PictureBox_MenuBar;
 
 
@@ -90,6 +91,14 @@ namespace Chytré_nástroje.Forms
 
             panelPrograms.Controls.Clear();
             panelPrograms.Controls.Add(pridavani);
+        }
+
+        public void LoadControlMazani()
+        {
+            var mazani = new MazaniProfilu();
+            mazani.Dock = DockStyle.Fill;
+            panelPrograms.Controls.Clear();
+            panelPrograms.Controls.Add(mazani);
         }
 
         public void ChangePictureBarMenu()

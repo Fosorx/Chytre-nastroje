@@ -17,6 +17,7 @@ namespace Chytré_nástroje.Forms
         public event Action ButtonKopirovani;
         public event Action ButtonPridavani;
         public event Action PictureBox_MenuBar;
+        public event Action ButtonMazani;
 
         public bool Is_Picture_Cross;
 
@@ -77,5 +78,9 @@ namespace Chytré_nástroje.Forms
             }
         }
 
+        private void buttonMazani_Click(object sender, EventArgs e)
+        {
+            ButtonMazani?.Invoke();
+        }
     }
 }

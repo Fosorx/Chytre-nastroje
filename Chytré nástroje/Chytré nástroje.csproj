@@ -26,9 +26,6 @@
     <Compile Update="Forms\Kopirovani.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\Mazani.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\Spusteni.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -36,6 +36,7 @@
             label_userName = new Label();
             label2 = new Label();
             pictureBox_menuBar = new PictureBox();
+            buttonMazani = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_menuBar).BeginInit();
             SuspendLayout();
@@ -130,11 +131,27 @@
             pictureBox_menuBar.TabStop = false;
             pictureBox_menuBar.Click += pictureBox_menuBar_Click;
             // 
+            // buttonMazani
+            // 
+            buttonMazani.BackColor = Color.FromArgb(213, 229, 241);
+            buttonMazani.FlatStyle = FlatStyle.Flat;
+            buttonMazani.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            buttonMazani.Location = new Point(41, 396);
+            buttonMazani.Margin = new Padding(9, 10, 9, 10);
+            buttonMazani.Name = "buttonMazani";
+            buttonMazani.RightToLeft = RightToLeft.No;
+            buttonMazani.Size = new Size(169, 52);
+            buttonMazani.TabIndex = 8;
+            buttonMazani.Text = "Mazání profilů";
+            buttonMazani.UseVisualStyleBackColor = false;
+            buttonMazani.Click += buttonMazani_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(11, 24, 33);
+            Controls.Add(buttonMazani);
             Controls.Add(pictureBox_menuBar);
             Controls.Add(label2);
             Controls.Add(label_userName);
@@ -161,5 +178,6 @@
         private Label label_userName;
         private Label label2;
         private PictureBox pictureBox_menuBar;
+        private Button buttonMazani;
     }
 }
