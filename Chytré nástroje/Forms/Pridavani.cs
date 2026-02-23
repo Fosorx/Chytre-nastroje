@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Chytré_nástroje
 {
-    public partial class Přidávání : UserControl
+    public partial class Pridavani : UserControl
     {
         private List<Users> seznamUzivatelu = new List<Users>();
         private string cestaKVybranemuSouboru = string.Empty;
@@ -19,7 +19,7 @@ namespace Chytré_nástroje
         // Definice cesty k logu
         public string CestaKLogu => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", "UserAddToADLogs.txt");
 
-        public Přidávání()
+        public Pridavani()
         {
             InitializeComponent();
             label2.Visible = false;

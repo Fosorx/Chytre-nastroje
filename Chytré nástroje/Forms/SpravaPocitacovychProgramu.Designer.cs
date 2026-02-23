@@ -40,6 +40,8 @@
             SuccessCountLabel = new Label();
             label3 = new Label();
             CheckUpdatesButton = new Button();
+            ChooseUpdatesButtons = new Button();
+            AllUpdatesButton = new Button();
             SuspendLayout();
             // 
             // name
@@ -153,10 +155,32 @@
             CheckUpdatesButton.UseVisualStyleBackColor = true;
             CheckUpdatesButton.Click += CheckUpdatesButton_Click;
             // 
+            // ChooseUpdatesButtons
+            // 
+            ChooseUpdatesButtons.Location = new Point(405, 431);
+            ChooseUpdatesButtons.Name = "ChooseUpdatesButtons";
+            ChooseUpdatesButtons.Size = new Size(138, 23);
+            ChooseUpdatesButtons.TabIndex = 12;
+            ChooseUpdatesButtons.Text = "Aktualizovat vybrané";
+            ChooseUpdatesButtons.UseVisualStyleBackColor = true;
+            ChooseUpdatesButtons.Click += ChooseUpdatesButtons_Click;
+            // 
+            // AllUpdatesButton
+            // 
+            AllUpdatesButton.Location = new Point(661, 431);
+            AllUpdatesButton.Name = "AllUpdatesButton";
+            AllUpdatesButton.Size = new Size(133, 23);
+            AllUpdatesButton.TabIndex = 13;
+            AllUpdatesButton.Text = "Aktualizovat všechno";
+            AllUpdatesButton.UseVisualStyleBackColor = true;
+            AllUpdatesButton.Click += AllUpdatesButton_Click;
+            // 
             // SpravaPocitacovychProgramu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(AllUpdatesButton);
+            Controls.Add(ChooseUpdatesButtons);
             Controls.Add(CheckUpdatesButton);
             Controls.Add(label3);
             Controls.Add(SuccessCountLabel);
@@ -189,5 +213,7 @@
         private Label SuccessCountLabel;
         private Label label3;
         private Button CheckUpdatesButton;
+        private Button ChooseUpdatesButtons;
+        private Button AllUpdatesButton;
     }
 }

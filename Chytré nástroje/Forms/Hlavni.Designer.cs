@@ -1,6 +1,6 @@
 ﻿namespace Chytré_nástroje.Forms
 {
-    partial class Hlavni2
+    partial class Hlavni
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hlavni2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Hlavni));
             panel_login = new Panel();
             SuspendLayout();
             // 
@@ -37,14 +37,14 @@
             resources.ApplyResources(panel_login, "panel_login");
             panel_login.Name = "panel_login";
             // 
-            // Hlavni2
+            // Hlavni
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel_login);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
-            Name = "Hlavni2";
+            Name = "Hlavni";
             SizeGripStyle = SizeGripStyle.Hide;
             ResumeLayout(false);
         }

@@ -5,13 +5,14 @@ using System.Windows.Forms;
 
 namespace Chytré_nástroje.Forms
 {
-    public partial class Hlavni2 : Form
+    public partial class Hlavni : Form
     {
         private Panel panelPrograms;
         private Panel panelMenu;
         private Menu menuControl;
 
-        public Hlavni2()
+
+        public Hlavni()
         {
             InitializeComponent();
 
@@ -88,7 +89,7 @@ namespace Chytré_nástroje.Forms
 
         public void LoadControlPridavani()
         {
-            var pridavani = new Přidávání();
+            var pridavani = new Pridavani();
             pridavani.Dock = DockStyle.Fill;
 
             panelPrograms.Controls.Clear();

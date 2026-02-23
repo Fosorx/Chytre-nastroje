@@ -50,7 +50,7 @@ namespace Chytré_nástroje.Forms
         #endregion
 
         #region Actions (Install / Update)
-
+        
         private async void InstallButton_Click(object sender, EventArgs e)
         {
             await SendBatchToEntireClass("install");
@@ -202,7 +202,7 @@ namespace Chytré_nástroje.Forms
 
         #endregion
 
-        #region Winget Updates (Scenario E)
+        #region Winget Updates
 
         private async void CheckUpdatesButton_Click(object sender, EventArgs e)
         {
@@ -295,6 +295,84 @@ namespace Chytré_nástroje.Forms
             }
         }
 
+        #endregion
+
+        #region Updates// Tlačítko: Aktualizovat pouze vybrané řádky
+        private async void ChooseUpdatesButtons_Click(object sender, EventArgs e)
+        {
+            // Získáme seznam všech objektů, které uživatel v ListBoxu označil
+            var selectedUpdates = ProgramsUpdatesListBox.SelectedItems
+                .OfType<WingetUpdateInfo>()
+                .ToList();
+
+            if (selectedUpdates.Count == 0)
+            {
+                MessageBox.Show("Označte v seznamu aplikace, které chcete aktualizovat.", "Žádný výběr");
+                return;
+            }
+
+            await ProcessWingetUpgrades(selectedUpdates);
+        }
+
+        // Tlačítko: Aktualizovat úplně všechno, co winget našel
+        private async void AllUpdatesButton_Click(object sender, EventArgs e)
+        {
+            // Získáme všechny objekty typu WingetUpdateInfo, které jsou v ListBoxu
+            var allUpdates = ProgramsUpdatesListBox.Items
+                .OfType<WingetUpdateInfo>()
+                .ToList();
+
+            if (allUpdates.Count == 0)
+            {
+                MessageBox.Show("Seznam aktualizací je prázdný.", "Není co aktualizovat");
+                return;
+            }
+
+            await ProcessWingetUpgrades(allUpdates);
+        }
+
+        private async Task ProcessWingetUpgrades(List<WingetUpdateInfo> updatesToApply)
+        {
+            // Příprava UI
+            _successCounter = 0;
+            UpdateSuccessLabel();
+
+            // Programy vypíšeme do logu, ať víme, že se něco děje
+            ProgramsUpdatesListBox.Items.Clear();
+            ProgramsUpdatesListBox.Items.Add("--- Spouštím hromadnou aktualizaci ---");
+
+            int pcCount = GetNumberOfIpAddresses();
+            string prefix = GetIpPrefix();
+
+            foreach (var update in updatesToApply)
+            {
+                for (int i = 1; i <= pcCount; i++)
+                {
+                    // Sestavení IP adresy
+                    string targetIp = (ComputerClassComboBox.SelectedIndex == 6) ? "127.0.0.1" : prefix + i.ToString();
+
+                    // Vytvoření JSON požadavku
+                    var request = new WingetRequest
+                    {
+                        Action = "upgrade", // Winget příkaz pro aktualizaci
+                        AppId = update.Id,
+                        Version = ""
+                    };
+
+                    string jsonPayload = JsonSerializer.Serialize(request);
+                    string fullMessage = $"WingetAction {jsonPayload}";
+
+                    // Odeslání (Fire and Forget) - nečekáme na dokončení instalace, 
+                    // jen na potvrzení serveru, že příkaz přijal.
+                    _ = CommunicateWithServer(targetIp, fullMessage);
+
+                    // Pokud jedeme na Localhostu, neiterujeme přes 32 adres
+                    if (ComputerClassComboBox.SelectedIndex == 6) break;
+                }
+            }
+
+            MessageBox.Show($"Požadavky na aktualizaci {updatesToApply.Count} aplikací byly odeslány na všechny dostupné počítače.", "Akce spuštěna");
+        }
         #endregion
     }
 

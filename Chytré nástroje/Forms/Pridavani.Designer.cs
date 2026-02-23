@@ -1,6 +1,6 @@
 ﻿namespace Chytré_nástroje
 {
-    partial class Přidávání
+    partial class Pridavani
     {
         /// <summary>
         ///  Required designer variable.

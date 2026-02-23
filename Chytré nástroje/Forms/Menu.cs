@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Chytré_nástroje.Code;
 
 namespace Chytré_nástroje.Forms
 {
@@ -26,6 +27,7 @@ namespace Chytré_nástroje.Forms
         public Menu()
         {
             InitializeComponent();
+
             pictureBox_menuBar.Image = Resources.cross_small;
             Is_Picture_Cross = true;
         }

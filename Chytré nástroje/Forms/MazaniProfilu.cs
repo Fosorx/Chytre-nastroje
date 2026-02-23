@@ -31,15 +31,8 @@ namespace Chytré_nástroje.Forms
         private void PopulateClasses()
         {
             ComputerClassComboBox.Items.Clear();
-            ComputerClassComboBox.Items.Add("VT1");
-            ComputerClassComboBox.Items.Add("VT2");
-            ComputerClassComboBox.Items.Add("VT3");
-            ComputerClassComboBox.Items.Add("VT4");
-            ComputerClassComboBox.Items.Add("VT5");
-            ComputerClassComboBox.Items.Add("ELM");
-            ComputerClassComboBox.Items.Add("Localhost");
-
-            // Výběrem prvního indexu se automaticky zavolá ComputerClassComboBox_SelectedIndexChanged
+            ComputerClassComboBox.Items.AddRange(new string[] 
+            { "VT1", "VT2", "VT3", "VT4", "VT5", "ELM", "Localhost" })
             if (ComputerClassComboBox.Items.Count > 0)
                 ComputerClassComboBox.SelectedIndex = 0;
         }
